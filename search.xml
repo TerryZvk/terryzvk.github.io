@@ -27,6 +27,21 @@
       </tags>
   </entry>
   <entry>
+    <title>JS类型判断</title>
+    <url>/2020/04/14/JS%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD/</url>
+    <content><![CDATA[<p>我们都知道 JS 是弱类型语言，跟java等强类型语言不同，我们只能在运行时才真正知道某个变量是属于哪一种类型，因为在此之前，你可能有意无意的改变了变量的类型，因为变量的值及其数据类型可在声明周期内改变，这也是bug的来源，相信很多小伙伴都深有体会😆。<br><a id="more"></a></p>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>我们都知道，JS 中变量分为两种类型。基本类型和引用类型。</p>
+<h4 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h4><p>基本类型包括<code>Undefined、Null、String、Number、Boolean、Symbol</code>。基本类型按值访问，所以我们可操作保存在变量中实际的值。</p>
+<p>基本类型的值在内存中占据固定大小的空间，是被保存在栈内存中。从一个变量向另一个变量复制基本类型的值，会创建这个值的一个副本，这两个值完全独立地存放在栈内存中。</p>
+<h4 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h4><p>引用类型是对象类型，包括<code>Object、Array、Function、Data、Regexp、Error</code>。引用类型的值是保存在堆内存中的对象，JS不允许直接访问内存中的位置，也就是说不能直接访问操作对象的内存空间。</p>
+<p>操作对象时，实际上是在操作对象的引用，所以说引用类型的值是按引用访问的。从而有<code>[1, 2] === [1, 2]</code>为<code>false</code>。</p>
+]]></content>
+      <tags>
+        <tag>JS</tag>
+        <tag>js类型</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LeetCode算法题之两数之和</title>
     <url>/2019/01/09/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E4%B9%8B%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/</url>
     <content><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。</p>
@@ -47,18 +62,19 @@
       </tags>
   </entry>
   <entry>
-    <title>JS类型判断</title>
-    <url>/2020/04/14/JS%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD/</url>
-    <content><![CDATA[<p>我们都知道 JS 是弱类型语言，跟java等强类型语言不同，我们只能在运行时才真正知道某个变量是属于哪一种类型，因为在此之前，你可能有意无意的改变了变量的类型，因为变量的值及其数据类型可在声明周期内改变，这也是bug的来源，相信很多小伙伴都深有体会😆。<br><a id="more"></a></p>
-<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>我们都知道，JS 中变量分为两种类型。基本类型和引用类型。</p>
-<h4 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h4><p>基本类型包括<code>Undefined、Null、String、Number、Boolean、Symbol</code>。基本类型按值访问，所以我们可操作保存在变量中实际的值。</p>
-<p>基本类型的值在内存中占据固定大小的空间，是被保存在栈内存中。从一个变量向另一个变量复制基本类型的值，会创建这个值的一个副本，这两个值完全独立地存放在栈内存中。</p>
-<h4 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h4><p>引用类型是对象类型，包括<code>Object、Array、Function、Data、Regexp、Error</code>。引用类型的值是保存在堆内存中的对象，JS不允许直接访问内存中的位置，也就是说不能直接访问操作对象的内存空间。</p>
-<p>操作对象时，实际上是在操作对象的引用，所以说引用类型的值是按引用访问的。从而有<code>[1, 2] === [1, 2]</code>为<code>false</code>。</p>
-]]></content>
+    <title>多条件判断的另一种写法</title>
+    <url>/2020/02/23/%E5%A4%9A%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A7%8D%E5%86%99%E6%B3%95/</url>
+    <content><![CDATA[<p>在写业务逻辑到时候，我们经常会碰到写很多if, 少数还好，多个的话可能会用switch, 随着业务逻辑越来越复杂，代码可能越来越臃肿，这个时候我们需要另一种写法简化代码。<br><a id="more"></a></p>
+<h3 id="ES6-Map"><a href="#ES6-Map" class="headerlink" title="ES6 Map"></a>ES6 Map</h3><p>从阮一峰老师的基础教程里可以知道 Map 的大致用法： </p>
+<p>Map 数据结构。它类似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当作键。也就是说，Object 结构提供了“字符串—值”的对应，Map 结构提供了“值—值”的对应，是一种更完善的 Hash 结构实现。如果你需要“键值对”的数据结构，Map 比 Object 更合适。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const m = new Map();</span><br><span class="line">const o = &#123;p: &apos;Hello World&apos;&#125;;</span><br><span class="line"></span><br><span class="line">m.set(o, &apos;content&apos;)</span><br><span class="line">m.get(o) // &quot;content&quot;</span><br><span class="line"></span><br><span class="line">m.has(o) // true</span><br><span class="line">m.delete(o) // true</span><br><span class="line">m.has(o) // false</span><br></pre></td></tr></table></figure>
+<p>上面代码使用 Map 结构的set方法，将对象o当作m的一个键，然后又使用get方法读取这个键，接着使用delete方法删除了这个键。</p>
+<p>上面的例子展示了如何向 Map 添加成员。作为构造函数，Map 也可以接受一个数组作为参数。该数组的成员是一个个表示键值对的数组。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const map = new Map([</span><br><span class="line">  [&apos;name&apos;, &apos;张三&apos;],</span><br><span class="line">  [&apos;title&apos;, &apos;Author&apos;]</span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line">map.size // 2</span><br><span class="line">map.has(&apos;name&apos;) // true</span><br><span class="line">map.get(&apos;name&apos;) // &quot;张三&quot;</span><br><span class="line">map.has(&apos;title&apos;) // true</span><br><span class="line">map.get(&apos;title&apos;) // &quot;Author&quot;</span><br></pre></td></tr></table></figure>
+<p>利用以上这一点，我们就可以重构多个 if 。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//将判断条件作为对象的属性名，将处理逻辑作为对象的属性值</span><br><span class="line">var Statistics = function()&#123;</span><br><span class="line">  console.log(&apos;执行&apos;)</span><br><span class="line">&#125;</span><br><span class="line">const comparativeTotles = new Map([</span><br><span class="line">    [0,Statistics],</span><br><span class="line">    [1,Statistics],</span><br><span class="line">    [2,Statistics],</span><br><span class="line">    [3,Statistics]</span><br><span class="line"> ])</span><br><span class="line">let map = function(val)&#123;</span><br><span class="line">      return comparativeTotles.get(val)</span><br><span class="line">&#125; </span><br><span class="line">let getMap  = map(1); //如果查找不到返回undefined</span><br><span class="line">if(!getMap)&#123;</span><br><span class="line">      console.log(&apos;查找不到&apos;)</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    concaozuole.log(&apos;执行操作&apos;)</span><br><span class="line">      getMap()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>JS</tag>
-        <tag>js类型</tag>
       </tags>
   </entry>
   <entry>
@@ -77,16 +93,6 @@
       </tags>
   </entry>
   <entry>
-    <title>我买房了</title>
-    <url>/2020/10/12/%E6%88%91%E4%B9%B0%E6%88%BF%E4%BA%86/</url>
-    <content><![CDATA[<p>2020年10月7日，我买房了！！！！😁完成了人生中一件大事！房子位于武汉黄家湖，地铁口。房价15500一平带精装修，环境还不错。只不过每月的房贷可真是压力不小啊。接下来的日子要努力奋斗了！！美好的日子就在前方！！😝</p>
-]]></content>
-      <tags>
-        <tag>生活</tag>
-        <tag>买房</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>最近的心情</title>
     <url>/2020/09/27/%E6%9C%80%E8%BF%91%E7%9A%84%E7%83%A6%E6%81%BC/</url>
     <content><![CDATA[<p>今天是2020年9月27号，心情不是很好。</p>
@@ -98,22 +104,6 @@
       </tags>
   </entry>
   <entry>
-    <title>多条件判断的另一种写法</title>
-    <url>/2020/02/23/%E5%A4%9A%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A7%8D%E5%86%99%E6%B3%95/</url>
-    <content><![CDATA[<p>在写业务逻辑到时候，我们经常会碰到写很多if, 少数还好，多个的话可能会用switch, 随着业务逻辑越来越复杂，代码可能越来越臃肿，这个时候我们需要另一种写法简化代码。<br><a id="more"></a></p>
-<h3 id="ES6-Map"><a href="#ES6-Map" class="headerlink" title="ES6 Map"></a>ES6 Map</h3><p>从阮一峰老师的基础教程里可以知道 Map 的大致用法： </p>
-<p>Map 数据结构。它类似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当作键。也就是说，Object 结构提供了“字符串—值”的对应，Map 结构提供了“值—值”的对应，是一种更完善的 Hash 结构实现。如果你需要“键值对”的数据结构，Map 比 Object 更合适。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const m = new Map();</span><br><span class="line">const o = &#123;p: &apos;Hello World&apos;&#125;;</span><br><span class="line"></span><br><span class="line">m.set(o, &apos;content&apos;)</span><br><span class="line">m.get(o) // &quot;content&quot;</span><br><span class="line"></span><br><span class="line">m.has(o) // true</span><br><span class="line">m.delete(o) // true</span><br><span class="line">m.has(o) // false</span><br></pre></td></tr></table></figure>
-<p>上面代码使用 Map 结构的set方法，将对象o当作m的一个键，然后又使用get方法读取这个键，接着使用delete方法删除了这个键。</p>
-<p>上面的例子展示了如何向 Map 添加成员。作为构造函数，Map 也可以接受一个数组作为参数。该数组的成员是一个个表示键值对的数组。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const map = new Map([</span><br><span class="line">  [&apos;name&apos;, &apos;张三&apos;],</span><br><span class="line">  [&apos;title&apos;, &apos;Author&apos;]</span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line">map.size // 2</span><br><span class="line">map.has(&apos;name&apos;) // true</span><br><span class="line">map.get(&apos;name&apos;) // &quot;张三&quot;</span><br><span class="line">map.has(&apos;title&apos;) // true</span><br><span class="line">map.get(&apos;title&apos;) // &quot;Author&quot;</span><br></pre></td></tr></table></figure>
-<p>利用以上这一点，我们就可以重构多个 if 。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//将判断条件作为对象的属性名，将处理逻辑作为对象的属性值</span><br><span class="line">var Statistics = function()&#123;</span><br><span class="line">  console.log(&apos;执行&apos;)</span><br><span class="line">&#125;</span><br><span class="line">const comparativeTotles = new Map([</span><br><span class="line">    [0,Statistics],</span><br><span class="line">    [1,Statistics],</span><br><span class="line">    [2,Statistics],</span><br><span class="line">    [3,Statistics]</span><br><span class="line"> ])</span><br><span class="line">let map = function(val)&#123;</span><br><span class="line">      return comparativeTotles.get(val)</span><br><span class="line">&#125; </span><br><span class="line">let getMap  = map(1); //如果查找不到返回undefined</span><br><span class="line">if(!getMap)&#123;</span><br><span class="line">      console.log(&apos;查找不到&apos;)</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    concaozuole.log(&apos;执行操作&apos;)</span><br><span class="line">      getMap()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>JS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>根据子节点寻找父节点路径</title>
     <url>/2020/05/03/%E6%A0%B9%E6%8D%AE%E5%AD%90%E8%8A%82%E7%82%B9%E5%AF%BB%E6%89%BE%E7%88%B6%E8%8A%82%E7%82%B9%E8%B7%AF%E5%BE%84/</url>
     <content><![CDATA[<p>最近项目遇到一个需求，在一个树结构里，根据子节点寻找父节点的路径，这里记录一下。<br><a id="more"></a></p>
@@ -122,6 +112,37 @@
 ]]></content>
       <tags>
         <tag>JS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我买房了</title>
+    <url>/2020/10/12/%E6%88%91%E4%B9%B0%E6%88%BF%E4%BA%86/</url>
+    <content><![CDATA[<p>2020年10月7日，我买房了！！！！😁完成了人生中一件大事！房子位于武汉黄家湖，地铁口。房价15500一平带精装修，环境还不错。只不过每月的房贷可真是压力不小啊。接下来的日子要努力奋斗了！！美好的日子就在前方！！😝</p>
+]]></content>
+      <tags>
+        <tag>生活</tag>
+        <tag>买房</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>测试持续集成</title>
+    <url>/2020/09/27/%E6%B5%8B%E8%AF%95%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/</url>
+    <content><![CDATA[<p>添加了travis的一个脚本，这样每次只要提交一下博客文件就行了，打包的工作就交还给travis了。持续集成真的很好用，极大地提升了效率。</p>
+]]></content>
+      <tags>
+        <tag>持续集成</tag>
+        <tag>测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>终于看完老友记了</title>
+    <url>/2020/04/12/%E7%BB%88%E4%BA%8E%E7%9C%8B%E5%AE%8C%E8%80%81%E5%8F%8B%E8%AE%B0%E4%BA%86/</url>
+    <content><![CDATA[<p><img src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&amp;quality=100&amp;size=b4000_4000&amp;sec=1586704138&amp;di=4329bb6a517364a9577b7c3f3bae641e&amp;src=http://i2.hdslb.com/bfs/archive/5339b0aee51f6be61ff127d1a7f9e085ca893104.jpg" alt="&#39;老友记海报&#39;"></p>
+<p>大学时就开始看老友记了，但是断断续续看了几季后又没看了，直到今天终于看完。看完发现，老友记真的好多荤段子啊😝，真的是少儿不宜2333。最开始我看海报，就是上面这张，我以为乔伊会和菲比在一起，最后看完竟然不是，哈哈哈哈。总之看完还是有点伤感的，有追完剧的空虚，也想起了大学时代那些日子，时间过得可真快啊。。。</p>
+]]></content>
+      <tags>
+        <tag>老友记</tag>
+        <tag>美剧</tag>
       </tags>
   </entry>
   <entry>
@@ -139,13 +160,14 @@
       </tags>
   </entry>
   <entry>
-    <title>测试持续集成</title>
-    <url>/2020/09/27/%E6%B5%8B%E8%AF%95%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/</url>
-    <content><![CDATA[<p>添加了travis的一个脚本，这样每次只要提交一下博客文件就行了，打包的工作就交还给travis了。持续集成真的很好用，极大地提升了效率。</p>
+    <title>js 单引号替换成双引号,双引号替换成单引号</title>
+    <url>/2021/03/25/js-%E5%8D%95%E5%BC%95%E5%8F%B7%E6%9B%BF%E6%8D%A2%E6%88%90%E5%8F%8C%E5%BC%95%E5%8F%B7-%E5%8F%8C%E5%BC%95%E5%8F%B7%E6%9B%BF%E6%8D%A2%E6%88%90%E5%8D%95%E5%BC%95%E5%8F%B7/</url>
+    <content><![CDATA[<p>js方法传参<code>data</code>中有双引号时，会报错。比如以下代码：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&apos;&lt;a href=&quot;#&quot; style=&quot;text-decoration: none;color: #7b7de5;margin-left: 10px&quot; onclick=&quot;handleAcClick(&apos;+data+&apos;)&quot;&gt;回执信息&lt;/a&gt;&apos;</span><br></pre></td></tr></table></figure></p>
+<p>可以把参数中的双引号转换为单引号：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">JSON.stringify(data).replace(/\&quot;/g,&quot;&apos;&quot;)</span><br></pre></td></tr></table></figure></p>
+<p>最后使用参数的时候再把单引号转换为双引号就行了<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">JSON.parse(data.replace(/&apos;/g, &apos;&quot;&apos;))</span><br></pre></td></tr></table></figure></p>
 ]]></content>
       <tags>
-        <tag>持续集成</tag>
-        <tag>测试</tag>
+        <tag>JS</tag>
       </tags>
   </entry>
   <entry>
@@ -155,17 +177,6 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&quot;#work_info&quot;).on(&apos;scroll&apos;, function ()&#123;</span><br><span class="line">    var flag = 0;</span><br><span class="line">    var w_top = $(this).scrollTop();</span><br><span class="line">    var len = arr.length</span><br><span class="line">    for(var i=0;i&lt;len;i++)&#123;</span><br><span class="line">        var linkText = arr[i];</span><br><span class="line">            if(w_top &gt;= topObj[linkText] &amp;&amp; w_top &lt;= topObj[[arr[i+1]]])&#123;</span><br><span class="line">                flag = i</span><br><span class="line">                    break;</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (topObj[arr[flag+1]] - w_top &lt; w_top -  topObj[arr[flag]])&#123;</span><br><span class="line">        flag += 1</span><br><span class="line">    &#125;</span><br><span class="line">    if (w_top &gt; arr[len - 1]) &#123;</span><br><span class="line">        flag = len - 1;</span><br><span class="line">    &#125;</span><br><span class="line">    $(&apos;.anchor-link[value=&apos;+arr[flag]+&apos;]&apos;).siblings().removeClass(&apos;anchor-active&apos;);</span><br><span class="line">    $(&apos;.anchor-link[value=&apos;+arr[flag]+&apos;]&apos;).addClass(&apos;anchor-active&apos;)                     </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>JS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>终于看完老友记了</title>
-    <url>/2020/04/12/%E7%BB%88%E4%BA%8E%E7%9C%8B%E5%AE%8C%E8%80%81%E5%8F%8B%E8%AE%B0%E4%BA%86/</url>
-    <content><![CDATA[<p><img src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&amp;quality=100&amp;size=b4000_4000&amp;sec=1586704138&amp;di=4329bb6a517364a9577b7c3f3bae641e&amp;src=http://i2.hdslb.com/bfs/archive/5339b0aee51f6be61ff127d1a7f9e085ca893104.jpg" alt="&#39;老友记海报&#39;"></p>
-<p>大学时就开始看老友记了，但是断断续续看了几季后又没看了，直到今天终于看完。看完发现，老友记真的好多荤段子啊😝，真的是少儿不宜2333。最开始我看海报，就是上面这张，我以为乔伊会和菲比在一起，最后看完竟然不是，哈哈哈哈。总之看完还是有点伤感的，有追完剧的空虚，也想起了大学时代那些日子，时间过得可真快啊。。。</p>
-]]></content>
-      <tags>
-        <tag>老友记</tag>
-        <tag>美剧</tag>
       </tags>
   </entry>
 </search>
