@@ -27,6 +27,21 @@
       </tags>
   </entry>
   <entry>
+    <title>vps一键搭建ss脚本</title>
+    <url>/2019/07/27/vps%E4%B8%80%E9%94%AE%E6%90%AD%E5%BB%BAss%E8%84%9A%E6%9C%AC/</url>
+    <content><![CDATA[<h3 id="安装脚本"><a href="#安装脚本" class="headerlink" title="安装脚本"></a>安装脚本</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget --no-check-certificate http://down.whsir.com/downloads/shadowsocks-go.sh</span><br><span class="line">chmod +x shadowsocks-go.sh</span><br><span class="line">./shadowsocks-go.sh 2&gt;&amp;1 | tee shadowsocks-go.log</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="卸载方法"><a href="#卸载方法" class="headerlink" title="卸载方法"></a>卸载方法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">./shadowsocks-go.sh uninstall</span><br></pre></td></tr></table></figure>
+<h3 id="用户密码配置"><a href="#用户密码配置" class="headerlink" title="用户密码配置"></a>用户密码配置</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vi /etc/shadowsocks/config.json</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    &quot;server&quot;:&quot;0.0.0.0&quot;,  //你的主机IP</span><br><span class="line">    &quot;server_port&quot;:xxxx,  //端口</span><br><span class="line">    &quot;local_port&quot;:1080,</span><br><span class="line">    &quot;password&quot;:&quot;xxxx&quot;,</span><br><span class="line">    &quot;method&quot;:&quot;aes-256-cfb&quot;,</span><br><span class="line">    &quot;timeout&quot;:600</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/etc/init.d/shadowsocks restart</span><br></pre></td></tr></table></figure>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">启动：/etc/init.d/shadowsocks start</span><br><span class="line">停止：/etc/init.d/shadowsocks stop</span><br><span class="line">重启：/etc/init.d/shadowsocks restart</span><br><span class="line">状态：/etc/init.d/shadowsocks status</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>vps</tag>
+        <tag>ss</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JS类型判断</title>
     <url>/2020/04/14/JS%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD/</url>
     <content><![CDATA[<p>我们都知道 JS 是弱类型语言，跟java等强类型语言不同，我们只能在运行时才真正知道某个变量是属于哪一种类型，因为在此之前，你可能有意无意的改变了变量的类型，因为变量的值及其数据类型可在声明周期内改变，这也是bug的来源，相信很多小伙伴都深有体会😆。<br><a id="more"></a></p>
@@ -62,6 +77,28 @@
       </tags>
   </entry>
   <entry>
+    <title>根据子节点寻找父节点路径</title>
+    <url>/2020/05/03/%E6%A0%B9%E6%8D%AE%E5%AD%90%E8%8A%82%E7%82%B9%E5%AF%BB%E6%89%BE%E7%88%B6%E8%8A%82%E7%82%B9%E8%B7%AF%E5%BE%84/</url>
+    <content><![CDATA[<p>最近项目遇到一个需求，在一个树结构里，根据子节点寻找父节点的路径，这里记录一下。<br><a id="more"></a></p>
+<h4 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function getParent(array, nodeCode)&#123;</span><br><span class="line">  let stack = [];</span><br><span class="line">  let going = true;</span><br><span class="line">  </span><br><span class="line">  let walker = (array, nodeCode) =&gt; &#123;</span><br><span class="line">      array.forEach(item =&gt; &#123;</span><br><span class="line">          if (!going) return;</span><br><span class="line">          stack.push(item[&apos;nodeCode&apos;]);</span><br><span class="line">          if (item[&apos;nodeCode&apos;] === nodeCode) &#123;</span><br><span class="line">              going = false;</span><br><span class="line">          &#125; else if (item[&apos;child&apos;]) &#123;</span><br><span class="line">              walker(item[&apos;child&apos;], nodeCode);</span><br><span class="line">          &#125; else &#123;</span><br><span class="line">              stack.pop();</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">      if (going) stack.pop();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  walker(array, nodeCode);</span><br><span class="line"></span><br><span class="line">  return stack.join(&apos;,&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function getParent(data, target)&#123;</span><br><span class="line"></span><br><span class="line">  const get = (children, target, record = []) =&gt; (</span><br><span class="line">    children.reduce((result, &#123; nodeCode, child: innerChildren &#125;) =&gt; &#123;</span><br><span class="line">      if (nodeCode === target) &#123;</span><br><span class="line">        return [...record, target]</span><br><span class="line">      &#125;</span><br><span class="line">      if (innerChildren) &#123;</span><br><span class="line">        return [...result, ...get(innerChildren, target, [...record, nodeCode])]</span><br><span class="line">      &#125;</span><br><span class="line">      return result</span><br><span class="line">    &#125;, []))</span><br><span class="line"></span><br><span class="line">  return get(data, target).join(&apos;,&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>JS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>js 单引号替换成双引号,双引号替换成单引号</title>
+    <url>/2021/03/25/js-%E5%8D%95%E5%BC%95%E5%8F%B7%E6%9B%BF%E6%8D%A2%E6%88%90%E5%8F%8C%E5%BC%95%E5%8F%B7-%E5%8F%8C%E5%BC%95%E5%8F%B7%E6%9B%BF%E6%8D%A2%E6%88%90%E5%8D%95%E5%BC%95%E5%8F%B7/</url>
+    <content><![CDATA[<p>js方法传参<code>data</code>中有双引号时，会报错。比如以下代码：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&apos;&lt;a href=&quot;#&quot; style=&quot;text-decoration: none;color: #7b7de5;margin-left: 10px&quot; onclick=&quot;handleAcClick(&apos;+data+&apos;)&quot;&gt;回执信息&lt;/a&gt;&apos;</span><br></pre></td></tr></table></figure></p>
+<p>可以把参数中的双引号转换为单引号：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">JSON.stringify(data).replace(/\&quot;/g,&quot;&apos;&quot;)</span><br></pre></td></tr></table></figure></p>
+<p>最后使用参数的时候再把单引号转换为双引号就行了<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">JSON.parse(data.replace(/&apos;/g, &apos;&quot;&apos;))</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <tags>
+        <tag>JS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>多条件判断的另一种写法</title>
     <url>/2020/02/23/%E5%A4%9A%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A7%8D%E5%86%99%E6%B3%95/</url>
     <content><![CDATA[<p>在写业务逻辑到时候，我们经常会碰到写很多if, 少数还好，多个的话可能会用switch, 随着业务逻辑越来越复杂，代码可能越来越臃肿，这个时候我们需要另一种写法简化代码。<br><a id="more"></a></p>
@@ -78,60 +115,14 @@
       </tags>
   </entry>
   <entry>
-    <title>vps一键搭建ss脚本</title>
-    <url>/2019/07/27/vps%E4%B8%80%E9%94%AE%E6%90%AD%E5%BB%BAss%E8%84%9A%E6%9C%AC/</url>
-    <content><![CDATA[<h3 id="安装脚本"><a href="#安装脚本" class="headerlink" title="安装脚本"></a>安装脚本</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget --no-check-certificate http://down.whsir.com/downloads/shadowsocks-go.sh</span><br><span class="line">chmod +x shadowsocks-go.sh</span><br><span class="line">./shadowsocks-go.sh 2&gt;&amp;1 | tee shadowsocks-go.log</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h3 id="卸载方法"><a href="#卸载方法" class="headerlink" title="卸载方法"></a>卸载方法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">./shadowsocks-go.sh uninstall</span><br></pre></td></tr></table></figure>
-<h3 id="用户密码配置"><a href="#用户密码配置" class="headerlink" title="用户密码配置"></a>用户密码配置</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vi /etc/shadowsocks/config.json</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    &quot;server&quot;:&quot;0.0.0.0&quot;,  //你的主机IP</span><br><span class="line">    &quot;server_port&quot;:xxxx,  //端口</span><br><span class="line">    &quot;local_port&quot;:1080,</span><br><span class="line">    &quot;password&quot;:&quot;xxxx&quot;,</span><br><span class="line">    &quot;method&quot;:&quot;aes-256-cfb&quot;,</span><br><span class="line">    &quot;timeout&quot;:600</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/etc/init.d/shadowsocks restart</span><br></pre></td></tr></table></figure>
-<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">启动：/etc/init.d/shadowsocks start</span><br><span class="line">停止：/etc/init.d/shadowsocks stop</span><br><span class="line">重启：/etc/init.d/shadowsocks restart</span><br><span class="line">状态：/etc/init.d/shadowsocks status</span><br></pre></td></tr></table></figure>
+    <title>github actions 前端部署服务器</title>
+    <url>/2021/07/04/github-actions-%E5%89%8D%E7%AB%AF%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
+    <content><![CDATA[<p>前端每次部署都要手动打包感觉好麻烦，浪费了大量时间不说还容易出错。所以就研究了一下github 的github actions。github自己推出的持续集成工具。<br>·<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">name: Blog CI/CD</span><br><span class="line"></span><br><span class="line">on:</span><br><span class="line">  push:</span><br><span class="line">    branches:</span><br><span class="line">      - master  # 只在master上push触发部署</span><br><span class="line"></span><br><span class="line">jobs:</span><br><span class="line">  build-production:</span><br><span class="line"></span><br><span class="line">    runs-on: ubuntu-latest</span><br><span class="line">    strategy:</span><br><span class="line">      matrix:</span><br><span class="line">        node-version: [12.x] # 配置所需node版本</span><br><span class="line">    steps:  # 自动化步骤</span><br><span class="line">    - uses: actions/checkout@v2   # 第一步，检出仓库副本</span><br><span class="line"></span><br><span class="line">    - name: Use Node.js $&#123;&#123; matrix.node-version &#125;&#125; #规定node.js版本(可不配置)</span><br><span class="line">      uses: actions/setup-node@v1</span><br><span class="line">      with:</span><br><span class="line">        node-version: $&#123;&#123; matrix.node-version &#125;&#125;</span><br><span class="line"></span><br><span class="line">    - name: Install dependencies  # 第二步，安装依赖</span><br><span class="line">      run: npm install</span><br><span class="line"></span><br><span class="line">    - name: Build                 # 第三步，打包代码</span><br><span class="line">      run: npm run build --if-present</span><br><span class="line"></span><br><span class="line">    # Deploy</span><br><span class="line">    - name: Deploy</span><br><span class="line">      uses: easingthemes/ssh-deploy@v2.0.7</span><br><span class="line">      env:</span><br><span class="line">        SSH_PRIVATE_KEY: $&#123;&#123; secrets.ACCESS_TOKEN &#125;&#125; # 服务端私钥</span><br><span class="line">        ARGS: &quot;-avz --delete&quot;</span><br><span class="line">        SOURCE: &quot;dist/&quot;</span><br><span class="line">        REMOTE_HOST: $&#123;&#123; secrets.SSH_HOST &#125;&#125;</span><br><span class="line">        REMOTE_USER: $&#123;&#123; secrets.SSH_USERNAME &#125;&#125;</span><br><span class="line">        TARGET: $&#123;&#123; secrets.TARGET &#125;&#125;</span><br></pre></td></tr></table></figure></p>
 ]]></content>
       <tags>
-        <tag>vps</tag>
-        <tag>ss</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>最近的心情</title>
-    <url>/2020/09/27/%E6%9C%80%E8%BF%91%E7%9A%84%E7%83%A6%E6%81%BC/</url>
-    <content><![CDATA[<p>今天是2020年9月27号，心情不是很好。</p>
-<p>最近心真的好累，应该是人生中最累的一个月了。家里发生了一些事，工作上总是熬夜加班，各种烦恼。哎，感觉自己已在崩溃的边缘，好想休息一段时间。</p>
-<p>还有家里介绍了一个女孩给我认识，可我只简单聊了几句就没下文了。该跟她说什么呢？跟异性聊天本来就不是我的特长，如果只是为了聊天而聊天，那只会更加尴尬吧。这也是最近的烦恼之一吧。</p>
-]]></content>
-      <tags>
-        <tag>碎碎念</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>根据子节点寻找父节点路径</title>
-    <url>/2020/05/03/%E6%A0%B9%E6%8D%AE%E5%AD%90%E8%8A%82%E7%82%B9%E5%AF%BB%E6%89%BE%E7%88%B6%E8%8A%82%E7%82%B9%E8%B7%AF%E5%BE%84/</url>
-    <content><![CDATA[<p>最近项目遇到一个需求，在一个树结构里，根据子节点寻找父节点的路径，这里记录一下。<br><a id="more"></a></p>
-<h4 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function getParent(array, nodeCode)&#123;</span><br><span class="line">  let stack = [];</span><br><span class="line">  let going = true;</span><br><span class="line">  </span><br><span class="line">  let walker = (array, nodeCode) =&gt; &#123;</span><br><span class="line">      array.forEach(item =&gt; &#123;</span><br><span class="line">          if (!going) return;</span><br><span class="line">          stack.push(item[&apos;nodeCode&apos;]);</span><br><span class="line">          if (item[&apos;nodeCode&apos;] === nodeCode) &#123;</span><br><span class="line">              going = false;</span><br><span class="line">          &#125; else if (item[&apos;child&apos;]) &#123;</span><br><span class="line">              walker(item[&apos;child&apos;], nodeCode);</span><br><span class="line">          &#125; else &#123;</span><br><span class="line">              stack.pop();</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">      if (going) stack.pop();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  walker(array, nodeCode);</span><br><span class="line"></span><br><span class="line">  return stack.join(&apos;,&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function getParent(data, target)&#123;</span><br><span class="line"></span><br><span class="line">  const get = (children, target, record = []) =&gt; (</span><br><span class="line">    children.reduce((result, &#123; nodeCode, child: innerChildren &#125;) =&gt; &#123;</span><br><span class="line">      if (nodeCode === target) &#123;</span><br><span class="line">        return [...record, target]</span><br><span class="line">      &#125;</span><br><span class="line">      if (innerChildren) &#123;</span><br><span class="line">        return [...result, ...get(innerChildren, target, [...record, nodeCode])]</span><br><span class="line">      &#125;</span><br><span class="line">      return result</span><br><span class="line">    &#125;, []))</span><br><span class="line"></span><br><span class="line">  return get(data, target).join(&apos;,&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>JS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>我买房了</title>
-    <url>/2020/10/12/%E6%88%91%E4%B9%B0%E6%88%BF%E4%BA%86/</url>
-    <content><![CDATA[<p>2020年10月7日，我买房了！！！！😁完成了人生中一件大事！房子位于武汉黄家湖，地铁口。房价15500一平带精装修，环境还不错。只不过每月的房贷可真是压力不小啊。接下来的日子要努力奋斗了！！美好的日子就在前方！！😝</p>
-]]></content>
-      <tags>
-        <tag>生活</tag>
-        <tag>买房</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>测试持续集成</title>
-    <url>/2020/09/27/%E6%B5%8B%E8%AF%95%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/</url>
-    <content><![CDATA[<p>添加了travis的一个脚本，这样每次只要提交一下博客文件就行了，打包的工作就交还给travis了。持续集成真的很好用，极大地提升了效率。</p>
-]]></content>
-      <tags>
+        <tag>CI</tag>
+        <tag>部署</tag>
         <tag>持续集成</tag>
-        <tag>测试</tag>
       </tags>
   </entry>
   <entry>
@@ -146,6 +137,26 @@
       </tags>
   </entry>
   <entry>
+    <title>测试持续集成</title>
+    <url>/2020/09/27/%E6%B5%8B%E8%AF%95%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/</url>
+    <content><![CDATA[<p>添加了travis的一个脚本，这样每次只要提交一下博客文件就行了，打包的工作就交还给travis了。持续集成真的很好用，极大地提升了效率。</p>
+]]></content>
+      <tags>
+        <tag>持续集成</tag>
+        <tag>测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>前端下载 excel</title>
+    <url>/2021/07/02/%E5%89%8D%E7%AB%AF%E4%B8%8B%E8%BD%BD-excel/</url>
+    <content><![CDATA[<p>前端导出excel:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import XLSX from &apos;xlsx&apos;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 导出Excel的处理函数--针对table</span><br><span class="line"> * @param &#123;Array&#125; headers: [&#123;key: &apos;date&apos;, title: &apos;日期&apos;&#125;, &#123;key: &apos;name&apos;, title: &apos;名称&apos;&#125;]</span><br><span class="line"> * @param &#123;Array&#125; data   : [&#123;date: &apos;2019-05-31&apos;, name: &apos;megen.huang&apos;&#125;, &#123;date: &apos;name&apos;, name: &apos;小明&apos;&#125;]</span><br><span class="line"> * @param &#123;String&#125; fileName: &apos;导出结果.xlsx&apos;</span><br><span class="line"> * */</span><br><span class="line">export default function Export2Excel (headers, data, fileName = &apos;导出结果.xlsx&apos;) &#123;</span><br><span class="line">  const _headers = headers.map((item, i) =&gt; Object.assign(&#123;&#125;, &#123; key: item.key, title: item.title, position: String.fromCharCode(65 + i) + 1 &#125;)).reduce((prev, next) =&gt; Object.assign(&#123;&#125;, prev, &#123; [next.position]: &#123; key: next.key, v: next.title &#125; &#125;), &#123;&#125;)</span><br><span class="line"></span><br><span class="line">  const _data = data.map((item, i) =&gt; headers.map((key, j) =&gt; Object.assign(&#123;&#125;, &#123; content: item[key.key], position: String.fromCharCode(65 + j) + (i + 2) &#125;)))</span><br><span class="line">  // 对刚才的结果进行降维处理（二维数组变成一维数组）</span><br><span class="line">    .reduce((prev, next) =&gt; prev.concat(next))</span><br><span class="line">    // 转换成 worksheet 需要的结构</span><br><span class="line">    .reduce((prev, next) =&gt; Object.assign(&#123;&#125;, prev, &#123; [next.position]: &#123; v: next.content &#125; &#125;), &#123;&#125;)</span><br><span class="line"></span><br><span class="line">  // 合并 headers 和 data</span><br><span class="line">  const output = Object.assign(&#123;&#125;, _headers, _data)</span><br><span class="line">  // 获取所有单元格的位置</span><br><span class="line">  const outputPos = Object.keys(output)</span><br><span class="line">  // 计算出范围 ,[&quot;A1&quot;,..., &quot;H2&quot;]</span><br><span class="line">  const ref = `$&#123;outputPos[0]&#125;:$&#123;outputPos[outputPos.length - 1]&#125;`</span><br><span class="line">  // 构建 workbook 对象</span><br><span class="line">  const wb = &#123;</span><br><span class="line">    SheetNames: [&apos;mySheet&apos;],</span><br><span class="line">    Sheets: &#123;</span><br><span class="line">      mySheet: Object.assign(</span><br><span class="line">        &#123;&#125;,</span><br><span class="line">        output,</span><br><span class="line">        &#123;</span><br><span class="line">          &apos;!ref&apos;: ref,</span><br><span class="line">          // eslint-disable-next-line</span><br><span class="line">            &apos;!cols&apos;: headers.map(item =&gt; (&#123;wpx: 100&#125;))</span><br><span class="line">        &#125;</span><br><span class="line">      )</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  // 导出 Excel</span><br><span class="line">  XLSX.writeFile(wb, fileName)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>JS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>算法之数组(一)</title>
     <url>/2020/04/25/%E7%AE%97%E6%B3%95%E4%B9%8B%E6%95%B0%E7%BB%84-%E4%B8%80/</url>
     <content><![CDATA[<p>给定一个数组，排序后实现第一大的值放在最左边，同时把第二大的值放在最右边，第三大的值放在左边第二位，第四大的值放在右边第二位，依次排序，比如给定<code>[1, 2, 3, 4]</code>，期望结果: <code>[4, 2, 1, 3]</code><br><a id="more"></a></p>
@@ -157,17 +168,6 @@
       <tags>
         <tag>算法</tag>
         <tag>js</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>js 单引号替换成双引号,双引号替换成单引号</title>
-    <url>/2021/03/25/js-%E5%8D%95%E5%BC%95%E5%8F%B7%E6%9B%BF%E6%8D%A2%E6%88%90%E5%8F%8C%E5%BC%95%E5%8F%B7-%E5%8F%8C%E5%BC%95%E5%8F%B7%E6%9B%BF%E6%8D%A2%E6%88%90%E5%8D%95%E5%BC%95%E5%8F%B7/</url>
-    <content><![CDATA[<p>js方法传参<code>data</code>中有双引号时，会报错。比如以下代码：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&apos;&lt;a href=&quot;#&quot; style=&quot;text-decoration: none;color: #7b7de5;margin-left: 10px&quot; onclick=&quot;handleAcClick(&apos;+data+&apos;)&quot;&gt;回执信息&lt;/a&gt;&apos;</span><br></pre></td></tr></table></figure></p>
-<p>可以把参数中的双引号转换为单引号：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">JSON.stringify(data).replace(/\&quot;/g,&quot;&apos;&quot;)</span><br></pre></td></tr></table></figure></p>
-<p>最后使用参数的时候再把单引号转换为双引号就行了<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">JSON.parse(data.replace(/&apos;/g, &apos;&quot;&apos;))</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <tags>
-        <tag>JS</tag>
       </tags>
   </entry>
   <entry>
