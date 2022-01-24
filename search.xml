@@ -114,8 +114,7 @@
   <entry>
     <title>优化打包体积</title>
     <url>/2022/01/24/%E4%BC%98%E5%8C%96%E6%89%93%E5%8C%85%E4%BD%93%E7%A7%AF/</url>
-    <content><![CDATA[<p>最近发现项目打包体积竟然有20M了， 想了想项目确实有几张图片体积很大，还引入了echarts， 但不至于体积这么大吧，于是开始研究webpack打包了。</p>
-<p>首先安装<code></code>webpack-bundle-analyzer` 插件， 找出最占用空间的文件有哪些。</p>
+    <content><![CDATA[<p>最近发现项目打包体积竟然有20M了， 想了想项目确实有几张图片体积很大，还引入了echarts， 但不至于体积这么大吧，于是开始研究webpack打包了。<br><a id="more"></a><br>首先安装<code></code>webpack-bundle-analyzer` 插件， 找出最占用空间的文件有哪些。</p>
 <p><code>npm install webpack-bundle-analyzer -D</code></p>
 <p>我是用的<code>vue-cli4</code>， 所以在<code>vue.config.js</code>里面添加如下：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const BundleAnalyzerPlugin = require(&quot;webpack-bundle-analyzer&quot;).BundleAnalyzerPlugin;</span><br><span class="line"> </span><br><span class="line">// 展示图形化信息</span><br><span class="line">chainWebpack: config =&gt; &#123;</span><br><span class="line">  config</span><br><span class="line">    .plugin(&apos;webpack-bundle-analyzer&apos;)</span><br><span class="line">    .use(BundleAnalyzerPlugin)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>然后在<code>package.json</code>里面添加<code>&quot;analyzer&quot;: &quot;use_analyzer=true npm run serve&quot;</code><br>可以看到如下图：</p>
