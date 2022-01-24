@@ -112,6 +112,16 @@
       </tags>
   </entry>
   <entry>
+    <title>优化打包体积</title>
+    <url>/2022/01/24/%E4%BC%98%E5%8C%96%E6%89%93%E5%8C%85%E4%BD%93%E7%A7%AF/</url>
+    <content><![CDATA[<p>最近发现项目打包体积竟然有20M了， 想了想项目确实有几张图片体积很大，还引入了echarts， 但不至于体积这么大吧，于是开始研究webpack打包了。</p>
+]]></content>
+      <tags>
+        <tag>webpack</tag>
+        <tag>打包</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>前端下载 excel</title>
     <url>/2021/07/02/%E5%89%8D%E7%AB%AF%E4%B8%8B%E8%BD%BD-excel/</url>
     <content><![CDATA[<p>前端导出excel:</p>
