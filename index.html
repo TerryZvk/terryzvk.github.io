@@ -294,6 +294,127 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/12/加油/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="terry zhang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tao's部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/02/12/加油/" itemprop="url">加油!</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-12T00:02:15+00:00">
+                2022-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近面试不太顺利，再一次感叹平时真的没有好好准备，遇到好的工作机会最后只能感叹，机会是留给有准备的人的。<br>不过，不要气馁，加油吧！好好总结，接着干！！！</p>
+<p>很久没有写日记了，感觉可以经常写写，记录平时的一些感想，多年后再看应该很有趣吧😁</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/26/事件捕获-冒泡-代理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -738,13 +859,17 @@
 
       
         
-          
-            <p>前端每次部署都要手动打包感觉好麻烦，浪费了大量时间不说还容易出错。所以就研究了一下github 的github actions。github自己推出的持续集成工具。<br>·<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">name: Blog CI/CD</span><br><span class="line"></span><br><span class="line">on:</span><br><span class="line">  push:</span><br><span class="line">    branches:</span><br><span class="line">      - master  # 只在master上push触发部署</span><br><span class="line"></span><br><span class="line">jobs:</span><br><span class="line">  build-production:</span><br><span class="line"></span><br><span class="line">    runs-on: ubuntu-latest</span><br><span class="line">    strategy:</span><br><span class="line">      matrix:</span><br><span class="line">        node-version: [12.x] # 配置所需node版本</span><br><span class="line">    steps:  # 自动化步骤</span><br><span class="line">    - uses: actions/checkout@v2   # 第一步，检出仓库副本</span><br><span class="line"></span><br><span class="line">    - name: Use Node.js $&#123;&#123; matrix.node-version &#125;&#125; #规定node.js版本(可不配置)</span><br><span class="line">      uses: actions/setup-node@v1</span><br><span class="line">      with:</span><br><span class="line">        node-version: $&#123;&#123; matrix.node-version &#125;&#125;</span><br><span class="line"></span><br><span class="line">    - name: Install dependencies  # 第二步，安装依赖</span><br><span class="line">      run: npm install</span><br><span class="line"></span><br><span class="line">    - name: Build                 # 第三步，打包代码</span><br><span class="line">      run: npm run build --if-present</span><br><span class="line"></span><br><span class="line">    # Deploy</span><br><span class="line">    - name: Deploy</span><br><span class="line">      uses: easingthemes/ssh-deploy@v2.0.7</span><br><span class="line">      env:</span><br><span class="line">        SSH_PRIVATE_KEY: $&#123;&#123; secrets.ACCESS_TOKEN &#125;&#125; # 服务端私钥</span><br><span class="line">        ARGS: &quot;-avz --delete&quot;</span><br><span class="line">        SOURCE: &quot;dist/&quot;</span><br><span class="line">        REMOTE_HOST: $&#123;&#123; secrets.SSH_HOST &#125;&#125;</span><br><span class="line">        REMOTE_USER: $&#123;&#123; secrets.SSH_USERNAME &#125;&#125;</span><br><span class="line">        TARGET: $&#123;&#123; secrets.TARGET &#125;&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
+          <p>前端每次部署都要手动打包感觉好麻烦，浪费了大量时间不说还容易出错。所以就研究了一下github 的github actions。github自己推出的持续集成工具。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/07/04/github-actions-前端部署服务器/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
-    </div>
+    </p></div>
     
     
     
@@ -1382,130 +1507,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/03/根据子节点寻找父节点路径/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="terry zhang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Tao's部落格">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/05/03/根据子节点寻找父节点路径/" itemprop="url">根据子节点寻找父节点路径</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-03T23:04:08+00:00">
-                2020-05-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>最近项目遇到一个需求，在一个树结构里，根据子节点寻找父节点的路径，这里记录一下。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/05/03/根据子节点寻找父节点路径/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </p></div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1556,7 +1557,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
