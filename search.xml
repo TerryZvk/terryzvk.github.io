@@ -230,6 +230,19 @@
       </tags>
   </entry>
   <entry>
+    <title>递归实现1-100求和</title>
+    <url>/2022/02/12/%E9%80%92%E5%BD%92%E5%AE%9E%E7%8E%B01-100%E6%B1%82%E5%92%8C/</url>
+    <content><![CDATA[<p>面试遇到这样一道题，平时没怎么准备算法，当时就卡壳了。后来回来想想其实很简单。要做的其实就是，用递归实现每次加1或者减1。</p>
+<p>真的要好好看看算法了呀。<br><a id="more"></a><br>减1：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function sum(n)&#123;</span><br><span class="line">  if(n === 1) return 1</span><br><span class="line">  return sum(n - 1) + n</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">sum(100) // 5050</span><br></pre></td></tr></table></figure>
+<p>加1：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function sum(num, start) &#123;</span><br><span class="line">  num += start</span><br><span class="line">  start++;</span><br><span class="line">  if (start &gt; 100) &#123;</span><br><span class="line">    return num</span><br><span class="line">  &#125;</span><br><span class="line">  else &#123;</span><br><span class="line">    sum(num, start)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">sum(0, 1) // 5050</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>算法</tag>
+        <tag>递归</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>锚点导航</title>
     <url>/2021/03/16/%E9%94%9A%E7%82%B9%E5%AF%BC%E8%88%AA/</url>
     <content><![CDATA[<p>导航锚点跟随页面滚动</p>
