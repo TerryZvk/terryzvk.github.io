@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="JS,防抖,节流,">
 
 
 
@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="life is fantastic!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Tao&#39;s部落格">
-<meta property="og:url" content="http://yoursite.com/archives/2022/02/index.html">
+<meta name="description" content="在处理高频事件，类似于window的resize或者scorll，或者input输入校验等操作时。如果直接执行事件处理器，会增大浏览器的负担，严重的直接卡死，用户体验非常不好。 面对这种情况，我们一般可以采用防抖和节流的方式减少调用频率。">
+<meta name="keywords" content="JS,防抖,节流">
+<meta property="og:type" content="article">
+<meta property="og:title" content="防抖节流">
+<meta property="og:url" content="http://yoursite.com/2022/02/12/防抖节流/index.html">
 <meta property="og:site_name" content="Tao&#39;s部落格">
-<meta property="og:description" content="life is fantastic!">
+<meta property="og:description" content="在处理高频事件，类似于window的resize或者scorll，或者input输入校验等操作时。如果直接执行事件处理器，会增大浏览器的负担，严重的直接卡死，用户体验非常不好。 面对这种情况，我们一般可以采用防抖和节流的方式减少调用频率。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2022-02-11T16:51:55.132Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tao&#39;s部落格">
-<meta name="twitter:description" content="life is fantastic!">
+<meta name="twitter:title" content="防抖节流">
+<meta name="twitter:description" content="在处理高频事件，类似于window的resize或者scorll，或者input输入校验等操作时。如果直接执行事件处理器，会增大浏览器的负担，严重的直接卡死，用户体验非常不好。 面对这种情况，我们一般可以采用防抖和节流的方式减少调用频率。">
 
 
 
@@ -118,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2022/02/">
+  <link rel="canonical" href="http://yoursite.com/2022/02/12/防抖节流/">
 
 
 
 
 
-  <title>归档 | Tao's部落格</title>
+  <title>防抖节流 | Tao's部落格</title>
   
 
 
@@ -143,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -279,107 +281,156 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        嗯..! 目前共计 18 篇日志。 继续努力。
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2022">2022</h1>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/12/防抖节流/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="terry zhang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tao's部落格">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2022/02/12/防抖节流/" itemprop="url">
-              
-                <span itemprop="name">防抖节流</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">防抖节流</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2022-02-12T00:09:45+00:00" content="2022-02-12">
-          02-12
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-12T00:09:45+00:00">
+                2022-02-12
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
 
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2022/02/12/加油/" itemprop="url">
-              
-                <span itemprop="name">加油!</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2022-02-12T00:02:15+00:00" content="2022-02-12">
-          02-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
+      
+        <p>在处理高频事件，类似于window的resize或者scorll，或者input输入校验等操作时。如果直接执行事件处理器，会增大浏览器的负担，严重的直接卡死，用户体验非常不好。</p>
+<p>面对这种情况，我们一般可以采用防抖和节流的方式减少调用频率。<br><a id="more"></a><br>防抖：在单位时间内执行函数， 如果在这个时间内触发，则重新开始计时。<br>场景：滚动条滚动， 提交按钮</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function debounce(fn, delay)&#123;</span><br><span class="line">  let timer</span><br><span class="line">  return function()&#123;</span><br><span class="line">    if(timer) clearTimeout(timer)</span><br><span class="line"></span><br><span class="line">    timer = setTimeout(fn, delay)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>防抖：在单位时间内执行函数， 如果在这个时间内触发，则忽略，直到时间结束，函数开始执行<br>场景：输入框输入</p>
+<p>第一种实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function throttle(fn, delay)&#123;</span><br><span class="line">  let timer</span><br><span class="line">  return function()&#123;</span><br><span class="line">    if(timer) return</span><br><span class="line">    timer = setTimeout(function()&#123;</span><br><span class="line">      fn()</span><br><span class="line">      clearTimeout(timer)</span><br><span class="line">    &#125;, delay)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>第二种实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function throttle(fn, delay)&#123;</span><br><span class="line">  let prev = Date.now()</span><br><span class="line">  return function()&#123;</span><br><span class="line">    if(Date.now() - prev &lt; delay) &#123;</span><br><span class="line">      return</span><br><span class="line">    &#125;</span><br><span class="line">    fn()</span><br><span class="line">    prev = Date.now()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JS/" rel="tag"># JS</a>
+          
+            <a href="/tags/防抖/" rel="tag"># 防抖</a>
+          
+            <a href="/tags/节流/" rel="tag"># 节流</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/02/12/加油/" rel="next" title="加油!">
+                <i class="fa fa-chevron-left"></i> 加油!
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -387,6 +438,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -592,6 +647,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

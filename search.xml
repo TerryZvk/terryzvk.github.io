@@ -238,4 +238,20 @@
         <tag>JS</tag>
       </tags>
   </entry>
+  <entry>
+    <title>防抖节流</title>
+    <url>/2022/02/12/%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81/</url>
+    <content><![CDATA[<p>在处理高频事件，类似于window的resize或者scorll，或者input输入校验等操作时。如果直接执行事件处理器，会增大浏览器的负担，严重的直接卡死，用户体验非常不好。</p>
+<p>面对这种情况，我们一般可以采用防抖和节流的方式减少调用频率。<br><a id="more"></a><br>防抖：在单位时间内执行函数， 如果在这个时间内触发，则重新开始计时。<br>场景：滚动条滚动， 提交按钮</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function debounce(fn, delay)&#123;</span><br><span class="line">  let timer</span><br><span class="line">  return function()&#123;</span><br><span class="line">    if(timer) clearTimeout(timer)</span><br><span class="line"></span><br><span class="line">    timer = setTimeout(fn, delay)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>防抖：在单位时间内执行函数， 如果在这个时间内触发，则忽略，直到时间结束，函数开始执行<br>场景：输入框输入</p>
+<p>第一种实现：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function throttle(fn, delay)&#123;</span><br><span class="line">  let timer</span><br><span class="line">  return function()&#123;</span><br><span class="line">    if(timer) return</span><br><span class="line">    timer = setTimeout(function()&#123;</span><br><span class="line">      fn()</span><br><span class="line">      clearTimeout(timer)</span><br><span class="line">    &#125;, delay)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>第二种实现：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function throttle(fn, delay)&#123;</span><br><span class="line">  let prev = Date.now()</span><br><span class="line">  return function()&#123;</span><br><span class="line">    if(Date.now() - prev &lt; delay) &#123;</span><br><span class="line">      return</span><br><span class="line">    &#125;</span><br><span class="line">    fn()</span><br><span class="line">    prev = Date.now()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <tags>
+        <tag>JS</tag>
+        <tag>防抖</tag>
+        <tag>节流</tag>
+      </tags>
+  </entry>
 </search>
