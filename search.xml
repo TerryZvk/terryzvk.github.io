@@ -27,21 +27,6 @@
       </tags>
   </entry>
   <entry>
-    <title>JS类型判断</title>
-    <url>/2020/04/14/JS%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD/</url>
-    <content><![CDATA[<p>我们都知道 JS 是弱类型语言，跟java等强类型语言不同，我们只能在运行时才真正知道某个变量是属于哪一种类型，因为在此之前，你可能有意无意的改变了变量的类型，因为变量的值及其数据类型可在声明周期内改变，这也是bug的来源，相信很多小伙伴都深有体会😆。<br><a id="more"></a></p>
-<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>我们都知道，JS 中变量分为两种类型。基本类型和引用类型。</p>
-<h4 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h4><p>基本类型包括<code>Undefined、Null、String、Number、Boolean、Symbol</code>。基本类型按值访问，所以我们可操作保存在变量中实际的值。</p>
-<p>基本类型的值在内存中占据固定大小的空间，是被保存在栈内存中。从一个变量向另一个变量复制基本类型的值，会创建这个值的一个副本，这两个值完全独立地存放在栈内存中。</p>
-<h4 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h4><p>引用类型是对象类型，包括<code>Object、Array、Function、Data、Regexp、Error</code>。引用类型的值是保存在堆内存中的对象，JS不允许直接访问内存中的位置，也就是说不能直接访问操作对象的内存空间。</p>
-<p>操作对象时，实际上是在操作对象的引用，所以说引用类型的值是按引用访问的。从而有<code>[1, 2] === [1, 2]</code>为<code>false</code>。</p>
-]]></content>
-      <tags>
-        <tag>JS</tag>
-        <tag>js类型</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>LeetCode算法题之两数之和</title>
     <url>/2019/01/09/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E4%B9%8B%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/</url>
     <content><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。</p>
@@ -59,6 +44,21 @@
         <tag>LeetCode</tag>
         <tag>算法</tag>
         <tag>两数之和</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JS类型判断</title>
+    <url>/2020/04/14/JS%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD/</url>
+    <content><![CDATA[<p>我们都知道 JS 是弱类型语言，跟java等强类型语言不同，我们只能在运行时才真正知道某个变量是属于哪一种类型，因为在此之前，你可能有意无意的改变了变量的类型，因为变量的值及其数据类型可在声明周期内改变，这也是bug的来源，相信很多小伙伴都深有体会😆。<br><a id="more"></a></p>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>我们都知道，JS 中变量分为两种类型。基本类型和引用类型。</p>
+<h4 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h4><p>基本类型包括<code>Undefined、Null、String、Number、Boolean、Symbol</code>。基本类型按值访问，所以我们可操作保存在变量中实际的值。</p>
+<p>基本类型的值在内存中占据固定大小的空间，是被保存在栈内存中。从一个变量向另一个变量复制基本类型的值，会创建这个值的一个副本，这两个值完全独立地存放在栈内存中。</p>
+<h4 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h4><p>引用类型是对象类型，包括<code>Object、Array、Function、Data、Regexp、Error</code>。引用类型的值是保存在堆内存中的对象，JS不允许直接访问内存中的位置，也就是说不能直接访问操作对象的内存空间。</p>
+<p>操作对象时，实际上是在操作对象的引用，所以说引用类型的值是按引用访问的。从而有<code>[1, 2] === [1, 2]</code>为<code>false</code>。</p>
+]]></content>
+      <tags>
+        <tag>JS</tag>
+        <tag>js类型</tag>
       </tags>
   </entry>
   <entry>
@@ -81,19 +81,6 @@
 ]]></content>
       <tags>
         <tag>JS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>rails单元测试github actions</title>
-    <url>/2021/07/08/rails%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95github-actions/</url>
-    <content><![CDATA[<p>学 rails 时用到了单元测试，那就用 github actions 来跑测试吧。</p>
-<p>下面是workflow配置：<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">name: Ruby</span><br><span class="line"></span><br><span class="line">on:</span><br><span class="line">  push:</span><br><span class="line">    branches: [ master ]</span><br><span class="line">  pull_request:</span><br><span class="line">    branches: [ master ]</span><br><span class="line"></span><br><span class="line">jobs:</span><br><span class="line">  test:</span><br><span class="line"></span><br><span class="line">    runs-on: ubuntu-latest</span><br><span class="line"></span><br><span class="line">    services:</span><br><span class="line">      mysql:</span><br><span class="line">        image: mysql:5.7</span><br><span class="line">        env:</span><br><span class="line">          MYSQL_ROOT_PASSWORD: root</span><br><span class="line">          MYSQL_DATABASE: app_db_test</span><br><span class="line">        ports:</span><br><span class="line">          - 3306</span><br><span class="line">        options: &gt;-</span><br><span class="line">          --health-cmd=&quot;mysqladmin ping&quot;</span><br><span class="line">          --health-interval=10s</span><br><span class="line">          --health-timeout=5s</span><br><span class="line">          --health-retries=3</span><br><span class="line"></span><br><span class="line">    steps:</span><br><span class="line">      - uses: actions/checkout@v1</span><br><span class="line"></span><br><span class="line">      - name: Set up Ruby 2.6.6</span><br><span class="line">        uses: ruby/setup-ruby@v1</span><br><span class="line">        with:</span><br><span class="line">          ruby-version: 2.6.6</span><br><span class="line"></span><br><span class="line">      - name: Gem cache</span><br><span class="line">        uses: actions/cache@v1</span><br><span class="line">        with:</span><br><span class="line">          path: vendor/bundle</span><br><span class="line">          key: $&#123;&#123; runner.os &#125;&#125;-gems-$&#123;&#123; hashFiles(&apos;**/Gemfile.lock&apos;) &#125;&#125;</span><br><span class="line">          restore-keys: |</span><br><span class="line">            $&#123;&#123; runner.os &#125;&#125;-gems-</span><br><span class="line"></span><br><span class="line">      - name: Verify MySQL connection from host</span><br><span class="line">        run: |</span><br><span class="line">          sudo apt-get install -y mysql-client libmysqlclient-dev</span><br><span class="line">          sudo /etc/init.d/mysql start</span><br><span class="line">          mysql -h 127.0.0.1 --port $&#123;&#123; job.services.mysql.ports[3306] &#125;&#125; -u root -proot -e &quot;CREATE DATABASE IF NOT EXISTS app_db_test;&quot;</span><br><span class="line"></span><br><span class="line">      - name: Bundle install, setup DB and run tests</span><br><span class="line">        env:</span><br><span class="line">          RAILS_ENV: test</span><br><span class="line">          DB_PASSWORD: root</span><br><span class="line">          DB_PORT: $&#123;&#123; job.services.mysql.ports[3306] &#125;&#125;</span><br><span class="line">        run: |</span><br><span class="line">          cp config/database.yml.ci config/database.yml</span><br><span class="line">          gem install bundler</span><br><span class="line">          bundle config path vendor/bundle</span><br><span class="line">          bundle install --jobs 4 --retry 3</span><br><span class="line">          bundle exec rails db:setup</span><br><span class="line">          bundle exec rails test</span><br></pre></td></tr></table></figure></p>
-<p>database.yml.ci 配置：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">default: &amp;default</span><br><span class="line">  adapter: mysql2</span><br><span class="line">  encoding: utf8mb4</span><br><span class="line">  pool: &lt;%= ENV.fetch(&quot;RAILS_MAX_THREADS&quot;) &#123; 5 &#125; %&gt;</span><br><span class="line">  username: root</span><br><span class="line">  password: root</span><br><span class="line"></span><br><span class="line">test:</span><br><span class="line">  &lt;&lt;: *default</span><br><span class="line">  database: app_db_test</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>持续集成</tag>
-        <tag>github actions</tag>
       </tags>
   </entry>
   <entry>
@@ -230,6 +217,18 @@
       </tags>
   </entry>
   <entry>
+    <title>箭头函数this</title>
+    <url>/2022/02/17/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0this/</url>
+    <content><![CDATA[<p>箭头函数的this在定义时就确定，就是箭头函数所在作用域的this, 且不会被call, apply, bind改变。<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let foo = () =&gt; &#123;</span><br><span class="line">  console.log(this.id)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let id = 21</span><br><span class="line"></span><br><span class="line">foo.call(&#123; id: 42 &#125;) //  21</span><br></pre></td></tr></table></figure></p>
+<p>如果箭头函数改成function，则会被改变，因为function的this只有调用时能确定</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let foo = function()&#123;</span><br><span class="line">  console.log(this.id)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let id = 21</span><br><span class="line"></span><br><span class="line">foo.call(&#123; id: 42 &#125;) // 42</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>JS</tag>
+        <tag>箭头函数</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>终于看完老友记了</title>
     <url>/2020/04/12/%E7%BB%88%E4%BA%8E%E7%9C%8B%E5%AE%8C%E8%80%81%E5%8F%8B%E8%AE%B0%E4%BA%86/</url>
     <content><![CDATA[<p><img src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&amp;quality=100&amp;size=b4000_4000&amp;sec=1586704138&amp;di=4329bb6a517364a9577b7c3f3bae641e&amp;src=http://i2.hdslb.com/bfs/archive/5339b0aee51f6be61ff127d1a7f9e085ca893104.jpg" alt="&#39;老友记海报&#39;"></p>
@@ -276,6 +275,19 @@
         <tag>JS</tag>
         <tag>防抖</tag>
         <tag>节流</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>rails单元测试github actions</title>
+    <url>/2021/07/08/rails%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95github-actions/</url>
+    <content><![CDATA[<p>学 rails 时用到了单元测试，那就用 github actions 来跑测试吧。</p>
+<p>下面是workflow配置：<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">name: Ruby</span><br><span class="line"></span><br><span class="line">on:</span><br><span class="line">  push:</span><br><span class="line">    branches: [ master ]</span><br><span class="line">  pull_request:</span><br><span class="line">    branches: [ master ]</span><br><span class="line"></span><br><span class="line">jobs:</span><br><span class="line">  test:</span><br><span class="line"></span><br><span class="line">    runs-on: ubuntu-latest</span><br><span class="line"></span><br><span class="line">    services:</span><br><span class="line">      mysql:</span><br><span class="line">        image: mysql:5.7</span><br><span class="line">        env:</span><br><span class="line">          MYSQL_ROOT_PASSWORD: root</span><br><span class="line">          MYSQL_DATABASE: app_db_test</span><br><span class="line">        ports:</span><br><span class="line">          - 3306</span><br><span class="line">        options: &gt;-</span><br><span class="line">          --health-cmd=&quot;mysqladmin ping&quot;</span><br><span class="line">          --health-interval=10s</span><br><span class="line">          --health-timeout=5s</span><br><span class="line">          --health-retries=3</span><br><span class="line"></span><br><span class="line">    steps:</span><br><span class="line">      - uses: actions/checkout@v1</span><br><span class="line"></span><br><span class="line">      - name: Set up Ruby 2.6.6</span><br><span class="line">        uses: ruby/setup-ruby@v1</span><br><span class="line">        with:</span><br><span class="line">          ruby-version: 2.6.6</span><br><span class="line"></span><br><span class="line">      - name: Gem cache</span><br><span class="line">        uses: actions/cache@v1</span><br><span class="line">        with:</span><br><span class="line">          path: vendor/bundle</span><br><span class="line">          key: $&#123;&#123; runner.os &#125;&#125;-gems-$&#123;&#123; hashFiles(&apos;**/Gemfile.lock&apos;) &#125;&#125;</span><br><span class="line">          restore-keys: |</span><br><span class="line">            $&#123;&#123; runner.os &#125;&#125;-gems-</span><br><span class="line"></span><br><span class="line">      - name: Verify MySQL connection from host</span><br><span class="line">        run: |</span><br><span class="line">          sudo apt-get install -y mysql-client libmysqlclient-dev</span><br><span class="line">          sudo /etc/init.d/mysql start</span><br><span class="line">          mysql -h 127.0.0.1 --port $&#123;&#123; job.services.mysql.ports[3306] &#125;&#125; -u root -proot -e &quot;CREATE DATABASE IF NOT EXISTS app_db_test;&quot;</span><br><span class="line"></span><br><span class="line">      - name: Bundle install, setup DB and run tests</span><br><span class="line">        env:</span><br><span class="line">          RAILS_ENV: test</span><br><span class="line">          DB_PASSWORD: root</span><br><span class="line">          DB_PORT: $&#123;&#123; job.services.mysql.ports[3306] &#125;&#125;</span><br><span class="line">        run: |</span><br><span class="line">          cp config/database.yml.ci config/database.yml</span><br><span class="line">          gem install bundler</span><br><span class="line">          bundle config path vendor/bundle</span><br><span class="line">          bundle install --jobs 4 --retry 3</span><br><span class="line">          bundle exec rails db:setup</span><br><span class="line">          bundle exec rails test</span><br></pre></td></tr></table></figure></p>
+<p>database.yml.ci 配置：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">default: &amp;default</span><br><span class="line">  adapter: mysql2</span><br><span class="line">  encoding: utf8mb4</span><br><span class="line">  pool: &lt;%= ENV.fetch(&quot;RAILS_MAX_THREADS&quot;) &#123; 5 &#125; %&gt;</span><br><span class="line">  username: root</span><br><span class="line">  password: root</span><br><span class="line"></span><br><span class="line">test:</span><br><span class="line">  &lt;&lt;: *default</span><br><span class="line">  database: app_db_test</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>持续集成</tag>
+        <tag>github actions</tag>
       </tags>
   </entry>
 </search>
