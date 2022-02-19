@@ -62,6 +62,17 @@
       </tags>
   </entry>
   <entry>
+    <title>defer async</title>
+    <url>/2022/02/19/defer-async/</url>
+    <content><![CDATA[<p>我们都知道，普通的<code>script</code>标签加载 <code>js</code>会阻塞页面解析，因此优化措施可以将script放到<code><script src="/live2d-widget-model-hibiki/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2d-widget-model-hibiki/","pluginJsPath":null,"pluginModelPath":"live2d-widget-model-hibiki/assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2d-widget-model-hibiki/live2d-widget-model-hibiki/assets/hibiki.model.json"},"display":{"position":"left","width":200,"height":400},"mobile":{"show":true},"react":{"opacity":0.7}});</script></code>标签前面。但还有一种更好的做法是加<code>defer </code>和 <code>async</code>属性。这两个属性使得<code>script</code>都不会阻塞<code>DOM</code>的渲染<br><a id="more"></a></p>
+<h3 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h3><p>如果script标签设置了该属性，则浏览器会异步的下载该文件并且不会影响到后续DOM的渲染；<br>如果有多个设置了defer的script标签存在，则会按照顺序执行所有的script；<br>defer脚本会在文档渲染完毕后，DOMContentLoaded事件调用前执行。</p>
+<p>应用场景: 如果你的脚本代码依赖于页面中的DOM元素（文档是否解析完毕），或者被其他脚本文件依赖。<br>例：<br>1.评论框<br>2.代码语法高亮<br>3.polyfill.js</p>
+<h3 id="async"><a href="#async" class="headerlink" title="async"></a>async</h3><p>async脚本会在加载完毕后执行。<br>sync的执行，并不会按着script在页面中的顺序来执行，而是谁先加载完谁执行。<br>async脚本的加载不计入DOMContentLoaded事件统计</p>
+<p>应用场景: 如果你的脚本并不关心页面中的DOM元素（文档是否解析完毕），并且也不会产生其他脚本需要的数据。</p>
+<p>例：<br>1.百度统计</p>
+]]></content>
+  </entry>
+  <entry>
     <title>es6数组方法</title>
     <url>/2022/02/17/es6%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<p>es5数组方法用的比较多，比较熟了，es6比较少，这里总结一下。<br><a id="more"></a></p>
@@ -149,7 +160,7 @@
 <p>cache-control中的max-age保存一个相对时间。例如Cache-Control: max-age = 484200，表示浏览器收到文件后，缓存在484200s内均有效。 如果同时存在cache-control和Expires，浏览器总是优先使用cache-control。</p>
 <h4 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h4><p>协商缓存通过HTTP的last-modified，Etag字段进行判断。</p>
 <p>last-modified是第一次请求资源时，服务器返回的字段，表示最后一次更新的时间。下一次浏览器请求资源时就发送if-modified-since字段。服务器用本地Last-modified时间与if-modified-since时间比较，如果不一致则认为缓存已过期并返回新资源给浏览器；如果时间一致则发送304状态码，让浏览器继续使用缓存。</p>
-<p>Etag：资源的实体标识（哈希字符串），当资源内容更新时，Etag会改变。服务器会判断Etag是否发生变化，如果变化则返回新资源，否则返回304。</p>
+<p>Etag：资源的实体标识（哈希字符串），当资源内容更新时，Etag会改变。服务器会判断Etag是否发生变化(IfNoneMatch)，如果变化则返回新资源，否则返回304。</p>
 <h3 id="DNS解析"><a href="#DNS解析" class="headerlink" title="DNS解析"></a>DNS解析</h3><p>我们知道在地址栏输入的域名并不是最后资源所在的真实位置，域名只是与IP地址的一个映射。网络服务器的IP地址那么多，我们不可能去记一串串的数字，因此域名就产生了，域名解析的过程实际是将域名还原为IP地址的过程。</p>
 <p>首先浏览器先检查本地hosts文件是否有这个网址映射关系，如果有就调用这个IP地址映射，完成域名解析。</p>
 <p>如果没找到则会查找本地DNS解析器缓存，如果查找到则返回。</p>

@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Tao&#39;s部落格">
 <meta property="og:description" content="从输入url到页面展现, 背后的流程大致如下：1.浏览器查找当前URL是否存在缓存，并比较缓存是否过期2.DNS解析3.通过IP向服务器发起TCP连接4.向服务器发起HTTP请求5.服务器返回请求内容6.浏览器解析渲染页面7.关闭连接">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2022-02-19T10:02:45.308Z">
+<meta property="og:updated_time" content="2022-02-19T10:44:34.660Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从输入url到页面展现">
 <meta name="twitter:description" content="从输入url到页面展现, 背后的流程大致如下：1.浏览器查找当前URL是否存在缓存，并比较缓存是否过期2.DNS解析3.通过IP向服务器发起TCP连接4.向服务器发起HTTP请求5.服务器返回请求内容6.浏览器解析渲染页面7.关闭连接">
@@ -369,7 +369,7 @@
 <p>cache-control中的max-age保存一个相对时间。例如Cache-Control: max-age = 484200，表示浏览器收到文件后，缓存在484200s内均有效。 如果同时存在cache-control和Expires，浏览器总是优先使用cache-control。</p>
 <h4 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h4><p>协商缓存通过HTTP的last-modified，Etag字段进行判断。</p>
 <p>last-modified是第一次请求资源时，服务器返回的字段，表示最后一次更新的时间。下一次浏览器请求资源时就发送if-modified-since字段。服务器用本地Last-modified时间与if-modified-since时间比较，如果不一致则认为缓存已过期并返回新资源给浏览器；如果时间一致则发送304状态码，让浏览器继续使用缓存。</p>
-<p>Etag：资源的实体标识（哈希字符串），当资源内容更新时，Etag会改变。服务器会判断Etag是否发生变化，如果变化则返回新资源，否则返回304。</p>
+<p>Etag：资源的实体标识（哈希字符串），当资源内容更新时，Etag会改变。服务器会判断Etag是否发生变化(IfNoneMatch)，如果变化则返回新资源，否则返回304。</p>
 <h3 id="DNS解析"><a href="#DNS解析" class="headerlink" title="DNS解析"></a>DNS解析</h3><p>我们知道在地址栏输入的域名并不是最后资源所在的真实位置，域名只是与IP地址的一个映射。网络服务器的IP地址那么多，我们不可能去记一串串的数字，因此域名就产生了，域名解析的过程实际是将域名还原为IP地址的过程。</p>
 <p>首先浏览器先检查本地hosts文件是否有这个网址映射关系，如果有就调用这个IP地址映射，完成域名解析。</p>
 <p>如果没找到则会查找本地DNS解析器缓存，如果查找到则返回。</p>
@@ -460,6 +460,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2022/02/19/defer-async/" rel="prev" title="defer async">
+                defer async <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -535,7 +539,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
