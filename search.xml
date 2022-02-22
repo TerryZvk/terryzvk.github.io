@@ -103,6 +103,17 @@
       </tags>
   </entry>
   <entry>
+    <title>defer async</title>
+    <url>/2022/02/19/defer-async/</url>
+    <content><![CDATA[<p>我们都知道，普通的<code>script</code>标签加载 <code>js</code>会阻塞页面解析，因此优化措施可以将script放到<code><script src="/live2d-widget-model-hibiki/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2d-widget-model-hibiki/","pluginJsPath":null,"pluginModelPath":"live2d-widget-model-hibiki/assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2d-widget-model-hibiki/live2d-widget-model-hibiki/assets/hibiki.model.json"},"display":{"position":"left","width":200,"height":400},"mobile":{"show":true},"react":{"opacity":0.7}});</script></code>标签前面。但还有一种更好的做法是加<code>defer </code>和 <code>async</code>属性。这两个属性使得<code>script</code>都不会阻塞<code>DOM</code>的渲染<br><a id="more"></a></p>
+<h3 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h3><p>如果script标签设置了该属性，则浏览器会异步的下载该文件并且不会影响到后续DOM的渲染；<br>如果有多个设置了defer的script标签存在，则会按照顺序执行所有的script；<br>defer脚本会在文档渲染完毕后，DOMContentLoaded事件调用前执行。</p>
+<p>应用场景: 如果你的脚本代码依赖于页面中的DOM元素（文档是否解析完毕），或者被其他脚本文件依赖。<br>例：<br>1.评论框<br>2.代码语法高亮<br>3.polyfill.js</p>
+<h3 id="async"><a href="#async" class="headerlink" title="async"></a>async</h3><p>async脚本会在加载完毕后执行。<br>sync的执行，并不会按着script在页面中的顺序来执行，而是谁先加载完谁执行。<br>async脚本的加载不计入DOMContentLoaded事件统计</p>
+<p>应用场景: 如果你的脚本并不关心页面中的DOM元素（文档是否解析完毕），并且也不会产生其他脚本需要的数据。</p>
+<p>例：<br>1.百度统计</p>
+]]></content>
+  </entry>
+  <entry>
     <title>LeetCode算法题之两数之和</title>
     <url>/2019/01/09/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E4%B9%8B%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/</url>
     <content><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。</p>
@@ -121,31 +132,6 @@
         <tag>算法</tag>
         <tag>两数之和</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>defer async</title>
-    <url>/2022/02/19/defer-async/</url>
-    <content><![CDATA[<p>我们都知道，普通的<code>script</code>标签加载 <code>js</code>会阻塞页面解析，因此优化措施可以将script放到<code><script src="/live2d-widget-model-hibiki/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2d-widget-model-hibiki/","pluginJsPath":null,"pluginModelPath":"live2d-widget-model-hibiki/assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2d-widget-model-hibiki/live2d-widget-model-hibiki/assets/hibiki.model.json"},"display":{"position":"left","width":200,"height":400},"mobile":{"show":true},"react":{"opacity":0.7}});</script></code>标签前面。但还有一种更好的做法是加<code>defer </code>和 <code>async</code>属性。这两个属性使得<code>script</code>都不会阻塞<code>DOM</code>的渲染<br><a id="more"></a></p>
-<h3 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h3><p>如果script标签设置了该属性，则浏览器会异步的下载该文件并且不会影响到后续DOM的渲染；<br>如果有多个设置了defer的script标签存在，则会按照顺序执行所有的script；<br>defer脚本会在文档渲染完毕后，DOMContentLoaded事件调用前执行。</p>
-<p>应用场景: 如果你的脚本代码依赖于页面中的DOM元素（文档是否解析完毕），或者被其他脚本文件依赖。<br>例：<br>1.评论框<br>2.代码语法高亮<br>3.polyfill.js</p>
-<h3 id="async"><a href="#async" class="headerlink" title="async"></a>async</h3><p>async脚本会在加载完毕后执行。<br>sync的执行，并不会按着script在页面中的顺序来执行，而是谁先加载完谁执行。<br>async脚本的加载不计入DOMContentLoaded事件统计</p>
-<p>应用场景: 如果你的脚本并不关心页面中的DOM元素（文档是否解析完毕），并且也不会产生其他脚本需要的数据。</p>
-<p>例：<br>1.百度统计</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>es6数组方法</title>
-    <url>/2022/02/17/es6%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>es5数组方法用的比较多，比较熟了，es6比较少，这里总结一下。<br><a id="more"></a></p>
-<h3 id="Array-from"><a href="#Array-from" class="headerlink" title="Array.from()"></a>Array.from()</h3><p>用于将类数组和可遍历的对象转换为真正的数组<br>类数组：就是类似数组的对象，本质上要有length属性，说到底，任何拥有length属性的对象，都可以通过Array.from()方法转换为数组。<br>可遍历的对象：ES6新增的数据结构set和map</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let myArray = &#123;&apos;0&apos;:&apos;a&apos;,&apos;1&apos;:&apos;b&apos;,&apos;2&apos;:&apos;c&apos;&#125;;</span><br><span class="line">let arr = Array.from(myArray);</span><br><span class="line">console.log(arr);   //[]由于没有length属性打印结果为一个空数组</span><br><span class="line"></span><br><span class="line">let myArray = &#123;&apos;0&apos;:&apos;a&apos;,&apos;1&apos;:&apos;b&apos;,&apos;2&apos;:&apos;c&apos;,length:3&#125;;</span><br><span class="line">let arr = Array.from(myArray);</span><br><span class="line">console.log(arr);  //[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]</span><br><span class="line"></span><br><span class="line">console.log(Array.from(&#123;length:2&#125;));  //[undefined, undefined]</span><br></pre></td></tr></table></figure>
-<h3 id="fill"><a href="#fill" class="headerlink" title="fill()"></a>fill()</h3><p>填充一个数组，一般用于数组的初始化</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var arr = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;];</span><br><span class="line">console.log(arr.fill(1)); // [1, 1, 1]</span><br></pre></td></tr></table></figure>
-<h3 id="keys"><a href="#keys" class="headerlink" title="keys()"></a>keys()</h3><p>keys()遍历出所有的索引值</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (let index of [&apos;a&apos;, &apos;b&apos;].keys()) &#123;</span><br><span class="line">    console.log(index);</span><br><span class="line">&#125;  //0  1</span><br></pre></td></tr></table></figure>
-<h3 id="valueOf-NaN"><a href="#valueOf-NaN" class="headerlink" title="valueOf()"></a>valueOf()</h3><p>valueOf()遍历所有的值<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (let index of [&apos;a&apos;, &apos;b&apos;].valueOf()) &#123;</span><br><span class="line">    console.log(index);</span><br><span class="line">&#125;  //a  b</span><br></pre></td></tr></table></figure></p>
-<h3 id="entries"><a href="#entries" class="headerlink" title="entries()"></a>entries()</h3><p>entries()遍历值和索引<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (let index of [&apos;a&apos;, &apos;b&apos;].entries()) &#123;</span><br><span class="line">    console.log(index);</span><br><span class="line">&#125;  //[0, &quot;a&quot;] [1, &quot;b&quot;]</span><br></pre></td></tr></table></figure></p>
-]]></content>
   </entry>
   <entry>
     <title>github actions 前端部署服务器</title>
@@ -223,6 +209,28 @@
 <p>宏任务包括了 script 脚本的执行、setTimeout ，setInterval ，setImmediate 一类的定时事件，还有如 I/O 操作、UI 渲<br>染等。</p>
 <h3 id="异步编程-promise"><a href="#异步编程-promise" class="headerlink" title="异步编程 promise"></a>异步编程 promise</h3><h3 id="requestAnimationFrame"><a href="#requestAnimationFrame" class="headerlink" title="requestAnimationFrame"></a>requestAnimationFrame</h3><p>setTimeout和setInterval的问题是，它们都不精确。它们的内在运行机制决定了时间间隔参数实际上只是指定了把动画代码添加到浏览器UI线程队列中以等待执行的时间。如果队列前面已经加入了其他任务，那动画代码就要等前面的任务完成后再执行。</p>
 <p>requestAnimationFrame采用系统时间间隔，保持最佳绘制效率，不会因为间隔时间过短，造成过度绘制，增加开销；也不会因为间隔时间太长，使用动画卡顿不流畅，让各种网页动画效果能够有一个统一的刷新机制，从而节省系统资源，改善视觉效果。</p>
+<h3 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h3><p>BFC即 Block Formatting Contexts (块级格式化上下文).</p>
+<p>具有 BFC 特性的元素可以看作是隔离了的独立容器，容器里面的元素不会在布局上影响到外面的元素，并且 BFC 具有普通容器所没有的一些特性。</p>
+<p>通俗一点来讲，可以把 BFC 理解为一个封闭的大箱子，箱子内部的元素无论如何翻江倒海，都不会影响到外部。</p>
+<p>只要元素满足下面任一条件即可触发 BFC 特性：</p>
+<p>body 根元素<br>浮动元素：float 除 none 以外的值<br>绝对定位元素：position (absolute、fixed)<br>display 为 inline-block、table-cells、flex<br>overflow 除了 visible 以外的值 (hidden、auto、scroll)</p>
+<h3 id="for-of-和-for-in-的区别"><a href="#for-of-和-for-in-的区别" class="headerlink" title="for of 和 for in 的区别"></a>for of 和 for in 的区别</h3><p>for-in是为遍历对象而设计的，不适用于遍历数组。(遍历数组的缺点：数组的下标index值是数字，for-in遍历的index值”0”,”1”,”2”等是字符串)</p>
+<p>for-in循环存在缺陷：循环会遍历对象自身的和继承的可枚举属性(不含Symbol属性)</p>
+<p>for-of遍历</p>
+<p>for-of这个方法避开了for-in循环的所有缺陷<br>与forEach()不同的是，它可以正确响应break、continue和return语句<br>for-of循环不仅支持数组，还支持大多数类数组对象，例如DOM NodeList对象。for-of循环也支持字符串遍历</p>
+<p>for-of循环不支持普通对象，但如果你想迭代一个对象的属性，你可以用for-in循环（这也是它的本职工作）或内建的Object.keys()方法</p>
+<h3 id="什么是重绘和回流"><a href="#什么是重绘和回流" class="headerlink" title="什么是重绘和回流"></a>什么是重绘和回流</h3><p>重绘: 当渲染树中的一些元素需要更新属性，而这些属性只是影响元素的外观、风格，而不会影响布局的操作，比如 background<br>       -color，我们将这样的操作称为重绘。</p>
+<p> 回流：当渲染树中的一部分（或全部）因为元素的规模尺寸、布局、隐藏等改变而需要重新构建的操作，会影响到布局的操作，这样<br>      的操作我们称为回流。</p>
+<p> 常见引起回流属性和方法：</p>
+<p> 任何会改变元素几何信息（元素的位置和尺寸大小）的操作，都会触发回流。</p>
+<p> （1）添加或者删除可见的 DOM 元素；<br> （2）元素尺寸改变——边距、填充、边框、宽度和高度<br> （3）内容变化，比如用户在 input 框中输入文字<br> （4）浏览器窗口尺寸改变——resize事件发生时<br> （5）计算 offsetWidth 和 offsetHeight 属性<br> （6）设置 style 属性的值<br> （7）当你修改网页的默认字体时。</p>
+<p> 回流必定会发生重绘，重绘不一定会引发回流。回流所需的成本比重绘高的多，改变父节点里的子节点很可能会导致父节点的一系列<br> 回流。</p>
+<p> 如何减少回流:</p>
+<p> 1）使用 transform 替代 top</p>
+<p> （2）不要把节点的属性值放在一个循环里当成循环里的变量</p>
+<p> （3）不要使用 table 布局，可能很小的一个小改动会造成整个 table 的重新布局</p>
+<p> （4）把 DOM 离线后修改。如：使用 documentFragment 对象在内存里操作 DOM</p>
+<p> （5）不要一条一条地修改 DOM 的样式。与其这样，还不如预先定义好 css 的 class，然后修改 DOM 的 className。</p>
 ]]></content>
       <tags>
         <tag>面试</tag>
@@ -269,31 +277,6 @@
         <tag>JS</tag>
         <tag>事件捕获</tag>
         <tag>事件冒泡</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>优化打包体积</title>
-    <url>/2022/01/24/%E4%BC%98%E5%8C%96%E6%89%93%E5%8C%85%E4%BD%93%E7%A7%AF/</url>
-    <content><![CDATA[<p>最近发现项目打包体积竟然有20M了， 想了想项目确实有几张图片体积很大，还引入了echarts， 但不至于体积这么大吧，于是开始研究webpack打包了。<br><a id="more"></a><br>首先安装<code></code>webpack-bundle-analyzer` 插件， 找出最占用空间的文件有哪些。</p>
-<p><code>npm install webpack-bundle-analyzer -D</code></p>
-<p>我是用的<code>vue-cli4</code>， 所以在<code>vue.config.js</code>里面添加如下：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const BundleAnalyzerPlugin = require(&quot;webpack-bundle-analyzer&quot;).BundleAnalyzerPlugin;</span><br><span class="line"> </span><br><span class="line">// 展示图形化信息</span><br><span class="line">chainWebpack: config =&gt; &#123;</span><br><span class="line">  config</span><br><span class="line">    .plugin(&apos;webpack-bundle-analyzer&apos;)</span><br><span class="line">    .use(BundleAnalyzerPlugin)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>然后在<code>package.json</code>里面添加<code>&quot;analyzer&quot;: &quot;use_analyzer=true npm run serve&quot;</code><br>可以看到如下图：</p>
-<p><img src="https://static01.imgkr.com/temp/8589678b5bcd43cc9107f90eb60f701e.jpg" alt="&#39;打包分析&#39;"></p>
-<p>可以看到，echarts 可以说是罪魁祸首了，源码加上地图json文件，占用了很大一部分空间。elementUI的文件也很大。</p>
-<p>首先是elementUI 的按需加载：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  presets: [</span><br><span class="line">    &apos;@vue/app&apos;</span><br><span class="line">  ],</span><br><span class="line">  plugins: [</span><br><span class="line">    [</span><br><span class="line">      &quot;component&quot;,</span><br><span class="line">      &#123;</span><br><span class="line">        libraryName: &quot;element-ui&quot;,</span><br><span class="line">        styleLibraryName: &quot;theme-chalk&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>接着优化echarts按需加载：<br><code>npm install babel-plugin-equire -D</code></p>
-<figure class="highlight plain"><figcaption><span>echarts </span></figcaption><table><tr><td class="code"><pre><span class="line">  // 写上你需要的 echarts api</span><br><span class="line">  &quot;bar&quot;,</span><br><span class="line">  &quot;line&quot;,</span><br><span class="line">  &quot;map&quot;</span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line">export default echarts;</span><br></pre></td></tr></table></figure>
-<p>在<code>vue.config.js</code>里面添加<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  presets: [</span><br><span class="line">    &apos;@vue/app&apos;</span><br><span class="line">  ],</span><br><span class="line">  plugins: [</span><br><span class="line">    [</span><br><span class="line">      &quot;component&quot;,</span><br><span class="line">      &#123;</span><br><span class="line">        libraryName: &quot;element-ui&quot;,</span><br><span class="line">        styleLibraryName: &quot;theme-chalk&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    ],</span><br><span class="line">    &quot;equire&quot;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>页面应用：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 直接引用</span><br><span class="line"> import echarts from &apos;@/lib/util/echarts.js&apos; </span><br><span class="line"> </span><br><span class="line"> this.myChart = echarts.init(this.$refs.chart)</span><br></pre></td></tr></table></figure></p>
-<p>删除无用的插件，避免加载多余的资源<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">chainWebpack: config =&gt; &#123;</span><br><span class="line">    // 移除prefetch插件，避免加载多余的资源</span><br><span class="line">    config.plugins.delete(&apos;prefetch&apos;)</span><br><span class="line">    / 移除 preload 插件，避免加载多余的资源</span><br><span class="line">    config.plugins.delete(&apos;preload&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>图片按需加载:  <code>npm install image-webpack-loader -D</code><br><code>vue.config.js</code>里面：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">config.module.rule(&apos;images&apos;)</span><br><span class="line">    .test(/\.(png|jpe?g|gif|webp)(\?.*)?$/)</span><br><span class="line">    .use(&apos;image-webpack-loader&apos;)</span><br><span class="line">    .loader(&apos;image-webpack-loader&apos;)</span><br><span class="line">    .options(&#123;</span><br><span class="line">      bypassOnDebug: true</span><br><span class="line">    &#125;)</span><br><span class="line">    .end()</span><br></pre></td></tr></table></figure></p>
-<p>抽离 css 支持按需加载: <code>npm install mini-css-extract-plugin -D</code><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">chainWebpack: config =&gt; &#123;</span><br><span class="line">  let miniCssExtractPlugin = new MiniCssExtractPlugin(&#123;</span><br><span class="line">    filename: &apos;assets/[name].[hash:8].css&apos;,</span><br><span class="line">    chunkFilename: &apos;assets/[name].[hash:8].css&apos;</span><br><span class="line">  &#125;)</span><br><span class="line">  config.plugin(&apos;extract-css&apos;).use(miniCssExtractPlugin)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>gzip压缩代码: <code>npm install compression-webpack-plugin -D</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const CompressionWebpackPlugin = require(&apos;compression-webpack-plugin&apos;);</span><br><span class="line"></span><br><span class="line">// 开启gzip压缩</span><br><span class="line">  config.plugins.push(</span><br><span class="line">    new CompressionWebpackPlugin(</span><br><span class="line">      &#123;</span><br><span class="line">        filename: info =&gt; &#123;</span><br><span class="line">          return `$&#123;info.path&#125;.gz$&#123;info.query&#125;`</span><br><span class="line">        &#125;,</span><br><span class="line">        algorithm: &apos;gzip&apos;,</span><br><span class="line">        threshold: 10240, // 只有大小大于该值的资源会被处理 10240</span><br><span class="line">        test: new RegExp(&apos;\\.(&apos; + [&apos;js&apos;].join(&apos;|&apos;) + &apos;)$&apos;</span><br><span class="line">        ),</span><br><span class="line">        minRatio: 0.8, // 只有压缩率小于这个值的资源才会被处理</span><br><span class="line">        deleteOriginalAssets: false // 删除原文件</span><br><span class="line">      &#125;</span><br><span class="line">    )</span><br><span class="line">  )</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>webpack</tag>
-        <tag>打包</tag>
       </tags>
   </entry>
   <entry>
@@ -362,6 +345,31 @@
       </tags>
   </entry>
   <entry>
+    <title>优化打包体积</title>
+    <url>/2022/01/24/%E4%BC%98%E5%8C%96%E6%89%93%E5%8C%85%E4%BD%93%E7%A7%AF/</url>
+    <content><![CDATA[<p>最近发现项目打包体积竟然有20M了， 想了想项目确实有几张图片体积很大，还引入了echarts， 但不至于体积这么大吧，于是开始研究webpack打包了。<br><a id="more"></a><br>首先安装<code></code>webpack-bundle-analyzer` 插件， 找出最占用空间的文件有哪些。</p>
+<p><code>npm install webpack-bundle-analyzer -D</code></p>
+<p>我是用的<code>vue-cli4</code>， 所以在<code>vue.config.js</code>里面添加如下：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const BundleAnalyzerPlugin = require(&quot;webpack-bundle-analyzer&quot;).BundleAnalyzerPlugin;</span><br><span class="line"> </span><br><span class="line">// 展示图形化信息</span><br><span class="line">chainWebpack: config =&gt; &#123;</span><br><span class="line">  config</span><br><span class="line">    .plugin(&apos;webpack-bundle-analyzer&apos;)</span><br><span class="line">    .use(BundleAnalyzerPlugin)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后在<code>package.json</code>里面添加<code>&quot;analyzer&quot;: &quot;use_analyzer=true npm run serve&quot;</code><br>可以看到如下图：</p>
+<p><img src="https://static01.imgkr.com/temp/8589678b5bcd43cc9107f90eb60f701e.jpg" alt="&#39;打包分析&#39;"></p>
+<p>可以看到，echarts 可以说是罪魁祸首了，源码加上地图json文件，占用了很大一部分空间。elementUI的文件也很大。</p>
+<p>首先是elementUI 的按需加载：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  presets: [</span><br><span class="line">    &apos;@vue/app&apos;</span><br><span class="line">  ],</span><br><span class="line">  plugins: [</span><br><span class="line">    [</span><br><span class="line">      &quot;component&quot;,</span><br><span class="line">      &#123;</span><br><span class="line">        libraryName: &quot;element-ui&quot;,</span><br><span class="line">        styleLibraryName: &quot;theme-chalk&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>接着优化echarts按需加载：<br><code>npm install babel-plugin-equire -D</code></p>
+<figure class="highlight plain"><figcaption><span>echarts </span></figcaption><table><tr><td class="code"><pre><span class="line">  // 写上你需要的 echarts api</span><br><span class="line">  &quot;bar&quot;,</span><br><span class="line">  &quot;line&quot;,</span><br><span class="line">  &quot;map&quot;</span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line">export default echarts;</span><br></pre></td></tr></table></figure>
+<p>在<code>vue.config.js</code>里面添加<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  presets: [</span><br><span class="line">    &apos;@vue/app&apos;</span><br><span class="line">  ],</span><br><span class="line">  plugins: [</span><br><span class="line">    [</span><br><span class="line">      &quot;component&quot;,</span><br><span class="line">      &#123;</span><br><span class="line">        libraryName: &quot;element-ui&quot;,</span><br><span class="line">        styleLibraryName: &quot;theme-chalk&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    ],</span><br><span class="line">    &quot;equire&quot;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>页面应用：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 直接引用</span><br><span class="line"> import echarts from &apos;@/lib/util/echarts.js&apos; </span><br><span class="line"> </span><br><span class="line"> this.myChart = echarts.init(this.$refs.chart)</span><br></pre></td></tr></table></figure></p>
+<p>删除无用的插件，避免加载多余的资源<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">chainWebpack: config =&gt; &#123;</span><br><span class="line">    // 移除prefetch插件，避免加载多余的资源</span><br><span class="line">    config.plugins.delete(&apos;prefetch&apos;)</span><br><span class="line">    / 移除 preload 插件，避免加载多余的资源</span><br><span class="line">    config.plugins.delete(&apos;preload&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>图片按需加载:  <code>npm install image-webpack-loader -D</code><br><code>vue.config.js</code>里面：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">config.module.rule(&apos;images&apos;)</span><br><span class="line">    .test(/\.(png|jpe?g|gif|webp)(\?.*)?$/)</span><br><span class="line">    .use(&apos;image-webpack-loader&apos;)</span><br><span class="line">    .loader(&apos;image-webpack-loader&apos;)</span><br><span class="line">    .options(&#123;</span><br><span class="line">      bypassOnDebug: true</span><br><span class="line">    &#125;)</span><br><span class="line">    .end()</span><br></pre></td></tr></table></figure></p>
+<p>抽离 css 支持按需加载: <code>npm install mini-css-extract-plugin -D</code><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">chainWebpack: config =&gt; &#123;</span><br><span class="line">  let miniCssExtractPlugin = new MiniCssExtractPlugin(&#123;</span><br><span class="line">    filename: &apos;assets/[name].[hash:8].css&apos;,</span><br><span class="line">    chunkFilename: &apos;assets/[name].[hash:8].css&apos;</span><br><span class="line">  &#125;)</span><br><span class="line">  config.plugin(&apos;extract-css&apos;).use(miniCssExtractPlugin)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>gzip压缩代码: <code>npm install compression-webpack-plugin -D</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const CompressionWebpackPlugin = require(&apos;compression-webpack-plugin&apos;);</span><br><span class="line"></span><br><span class="line">// 开启gzip压缩</span><br><span class="line">  config.plugins.push(</span><br><span class="line">    new CompressionWebpackPlugin(</span><br><span class="line">      &#123;</span><br><span class="line">        filename: info =&gt; &#123;</span><br><span class="line">          return `$&#123;info.path&#125;.gz$&#123;info.query&#125;`</span><br><span class="line">        &#125;,</span><br><span class="line">        algorithm: &apos;gzip&apos;,</span><br><span class="line">        threshold: 10240, // 只有大小大于该值的资源会被处理 10240</span><br><span class="line">        test: new RegExp(&apos;\\.(&apos; + [&apos;js&apos;].join(&apos;|&apos;) + &apos;)$&apos;</span><br><span class="line">        ),</span><br><span class="line">        minRatio: 0.8, // 只有压缩率小于这个值的资源才会被处理</span><br><span class="line">        deleteOriginalAssets: false // 删除原文件</span><br><span class="line">      &#125;</span><br><span class="line">    )</span><br><span class="line">  )</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>webpack</tag>
+        <tag>打包</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>前端下载 excel</title>
     <url>/2021/07/02/%E5%89%8D%E7%AB%AF%E4%B8%8B%E8%BD%BD-excel/</url>
     <content><![CDATA[<p>前端导出excel:</p>
@@ -370,6 +378,27 @@
       <tags>
         <tag>JS</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>es6数组方法</title>
+    <url>/2022/02/17/es6%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>es5数组方法用的比较多，比较熟了，es6比较少，这里总结一下。<br><a id="more"></a></p>
+<h3 id="Array-from"><a href="#Array-from" class="headerlink" title="Array.from()"></a>Array.from()</h3><p>用于将类数组和可遍历的对象转换为真正的数组<br>类数组：就是类似数组的对象，本质上要有length属性，说到底，任何拥有length属性的对象，都可以通过Array.from()方法转换为数组。<br>可遍历的对象：ES6新增的数据结构set和map</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let myArray = &#123;&apos;0&apos;:&apos;a&apos;,&apos;1&apos;:&apos;b&apos;,&apos;2&apos;:&apos;c&apos;&#125;;</span><br><span class="line">let arr = Array.from(myArray);</span><br><span class="line">console.log(arr);   //[]由于没有length属性打印结果为一个空数组</span><br><span class="line"></span><br><span class="line">let myArray = &#123;&apos;0&apos;:&apos;a&apos;,&apos;1&apos;:&apos;b&apos;,&apos;2&apos;:&apos;c&apos;,length:3&#125;;</span><br><span class="line">let arr = Array.from(myArray);</span><br><span class="line">console.log(arr);  //[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]</span><br><span class="line"></span><br><span class="line">console.log(Array.from(&#123;length:2&#125;));  //[undefined, undefined]</span><br></pre></td></tr></table></figure>
+<h3 id="fill"><a href="#fill" class="headerlink" title="fill()"></a>fill()</h3><p>填充一个数组，一般用于数组的初始化</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var arr = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;];</span><br><span class="line">console.log(arr.fill(1)); // [1, 1, 1]</span><br></pre></td></tr></table></figure>
+<h3 id="keys"><a href="#keys" class="headerlink" title="keys()"></a>keys()</h3><p>keys()遍历出所有的索引值</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (let index of [&apos;a&apos;, &apos;b&apos;].keys()) &#123;</span><br><span class="line">    console.log(index);</span><br><span class="line">&#125;  //0  1</span><br></pre></td></tr></table></figure>
+<h3 id="valueOf-NaN"><a href="#valueOf-NaN" class="headerlink" title="valueOf()"></a>valueOf()</h3><p>valueOf()遍历所有的值<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (let index of [&apos;a&apos;, &apos;b&apos;].valueOf()) &#123;</span><br><span class="line">    console.log(index);</span><br><span class="line">&#125;  //a  b</span><br></pre></td></tr></table></figure></p>
+<h3 id="entries"><a href="#entries" class="headerlink" title="entries()"></a>entries()</h3><p>entries()遍历值和索引<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (let index of [&apos;a&apos;, &apos;b&apos;].entries()) &#123;</span><br><span class="line">    console.log(index);</span><br><span class="line">&#125;  //[0, &quot;a&quot;] [1, &quot;b&quot;]</span><br></pre></td></tr></table></figure></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>加油!</title>
+    <url>/2022/02/12/%E5%8A%A0%E6%B2%B9/</url>
+    <content><![CDATA[<p>最近面试不太顺利，再一次感叹平时真的没有好好准备，遇到好的工作机会最后只能感叹，机会是留给有准备的人的。<br>不过，不要气馁，加油吧！好好总结，接着干！！！</p>
+<p>很久没有写日记了，感觉可以经常写写，记录平时的一些感想，多年后再看应该很有趣吧😁</p>
+]]></content>
   </entry>
   <entry>
     <title>多条件判断的另一种写法</title>
@@ -386,13 +415,6 @@
       <tags>
         <tag>JS</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>加油!</title>
-    <url>/2022/02/12/%E5%8A%A0%E6%B2%B9/</url>
-    <content><![CDATA[<p>最近面试不太顺利，再一次感叹平时真的没有好好准备，遇到好的工作机会最后只能感叹，机会是留给有准备的人的。<br>不过，不要气馁，加油吧！好好总结，接着干！！！</p>
-<p>很久没有写日记了，感觉可以经常写写，记录平时的一些感想，多年后再看应该很有趣吧😁</p>
-]]></content>
   </entry>
   <entry>
     <title>根据子节点寻找父节点路径</title>
