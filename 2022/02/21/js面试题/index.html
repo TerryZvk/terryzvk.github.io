@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Tao&#39;s部落格">
 <meta property="og:description" content="js的数据类型js 可以分为两种类型的值，一种是基本数据类型，一种是复杂数据类型。 基本数据类型：Undefined、Null、Boolean、Number、String 复杂数据类型指的是 Object 类型，所有其他的如 Array、Date 等数据类型都可以理解为 Object 类型的子类。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2022-02-22T16:30:05.558Z">
+<meta property="og:updated_time" content="2022-02-23T16:10:17.600Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js面试题">
 <meta name="twitter:description" content="js的数据类型js 可以分为两种类型的值，一种是基本数据类型，一种是复杂数据类型。 基本数据类型：Undefined、Null、Boolean、Number、String 复杂数据类型指的是 Object 类型，所有其他的如 Array、Date 等数据类型都可以理解为 Object 类型的子类。">
@@ -435,6 +435,9 @@
 <p> （3）不要使用 table 布局，可能很小的一个小改动会造成整个 table 的重新布局</p>
 <p> （4）把 DOM 离线后修改。如：使用 documentFragment 对象在内存里操作 DOM</p>
 <p> （5）不要一条一条地修改 DOM 的样式。与其这样，还不如预先定义好 css 的 class，然后修改 DOM 的 className。</p>
+<h3 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h3><p>box-sizing属性可以指定盒子模型种类，content-box指定盒子模型为W3C（标准盒模型），border-box为IE盒子模型（怪异盒模型）。</p>
+<p>box-sizing: content-box;//宽度和高度分别应用到元素的内容框。在宽度和高度之外绘制元素的内边距和边框。</p>
+<p>box-sizing: border-box;// 为元素设定的宽度和高度决定了元素的边框盒。就是说，为元素指定的任何内边距和边框都将在已设定的宽度和高度内进行绘制。通过从已设定的宽度和高度分别减去边框和内边距才能得到内容的宽度和高度。</p>
 
       
     </div>
@@ -476,6 +479,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/02/23/jsonp原理与实现/" rel="prev" title="jsonp原理与实现">
+                jsonp原理与实现 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -552,7 +559,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -565,7 +572,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -598,7 +605,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#js的数据类型"><span class="nav-number">1.</span> <span class="nav-text">js的数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断变量的类型"><span class="nav-number">2.</span> <span class="nav-text">判断变量的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原型和原型链"><span class="nav-number">3.</span> <span class="nav-text">原型和原型链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包及优缺点"><span class="nav-number">4.</span> <span class="nav-text">闭包及优缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#call-apply-bind"><span class="nav-number">5.</span> <span class="nav-text">call apply bind</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM-事件流-和事件委托"><span class="nav-number">6.</span> <span class="nav-text">DOM 事件流 和事件委托</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cookie-localStorage-sessionStorage"><span class="nav-number">7.</span> <span class="nav-text">cookie localStorage sessionStorage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组和对象的常用方法"><span class="nav-number">8.</span> <span class="nav-text">数组和对象的常用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#new-内部做了什么"><span class="nav-number">9.</span> <span class="nav-text">new 内部做了什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#防抖节流"><span class="nav-number">10.</span> <span class="nav-text">防抖节流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#this-指向"><span class="nav-number">11.</span> <span class="nav-text">this 指向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作用域链"><span class="nav-number">12.</span> <span class="nav-text">作用域链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承的几种实现方式"><span class="nav-number">13.</span> <span class="nav-text">继承的几种实现方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#箭头函数"><span class="nav-number">14.</span> <span class="nav-text">箭头函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ajax"><span class="nav-number">15.</span> <span class="nav-text">ajax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#var-let-const"><span class="nav-number">16.</span> <span class="nav-text">var let const</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#js-执行机制"><span class="nav-number">17.</span> <span class="nav-text">js 执行机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步编程-promise"><span class="nav-number">18.</span> <span class="nav-text">异步编程 promise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#requestAnimationFrame"><span class="nav-number">19.</span> <span class="nav-text">requestAnimationFrame</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BFC"><span class="nav-number">20.</span> <span class="nav-text">BFC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for-of-和-for-in-的区别"><span class="nav-number">21.</span> <span class="nav-text">for of 和 for in 的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是重绘和回流"><span class="nav-number">22.</span> <span class="nav-text">什么是重绘和回流</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#js的数据类型"><span class="nav-number">1.</span> <span class="nav-text">js的数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断变量的类型"><span class="nav-number">2.</span> <span class="nav-text">判断变量的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原型和原型链"><span class="nav-number">3.</span> <span class="nav-text">原型和原型链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包及优缺点"><span class="nav-number">4.</span> <span class="nav-text">闭包及优缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#call-apply-bind"><span class="nav-number">5.</span> <span class="nav-text">call apply bind</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM-事件流-和事件委托"><span class="nav-number">6.</span> <span class="nav-text">DOM 事件流 和事件委托</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cookie-localStorage-sessionStorage"><span class="nav-number">7.</span> <span class="nav-text">cookie localStorage sessionStorage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组和对象的常用方法"><span class="nav-number">8.</span> <span class="nav-text">数组和对象的常用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#new-内部做了什么"><span class="nav-number">9.</span> <span class="nav-text">new 内部做了什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#防抖节流"><span class="nav-number">10.</span> <span class="nav-text">防抖节流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#this-指向"><span class="nav-number">11.</span> <span class="nav-text">this 指向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作用域链"><span class="nav-number">12.</span> <span class="nav-text">作用域链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承的几种实现方式"><span class="nav-number">13.</span> <span class="nav-text">继承的几种实现方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#箭头函数"><span class="nav-number">14.</span> <span class="nav-text">箭头函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ajax"><span class="nav-number">15.</span> <span class="nav-text">ajax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#var-let-const"><span class="nav-number">16.</span> <span class="nav-text">var let const</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#js-执行机制"><span class="nav-number">17.</span> <span class="nav-text">js 执行机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步编程-promise"><span class="nav-number">18.</span> <span class="nav-text">异步编程 promise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#requestAnimationFrame"><span class="nav-number">19.</span> <span class="nav-text">requestAnimationFrame</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BFC"><span class="nav-number">20.</span> <span class="nav-text">BFC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for-of-和-for-in-的区别"><span class="nav-number">21.</span> <span class="nav-text">for of 和 for in 的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是重绘和回流"><span class="nav-number">22.</span> <span class="nav-text">什么是重绘和回流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#盒子模型"><span class="nav-number">23.</span> <span class="nav-text">盒子模型</span></a></li></ol></div>
             
 
           </div>

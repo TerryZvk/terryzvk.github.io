@@ -103,17 +103,6 @@
       </tags>
   </entry>
   <entry>
-    <title>defer async</title>
-    <url>/2022/02/19/defer-async/</url>
-    <content><![CDATA[<p>我们都知道，普通的<code>script</code>标签加载 <code>js</code>会阻塞页面解析，因此优化措施可以将script放到<code><script src="/live2d-widget-model-hibiki/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2d-widget-model-hibiki/","pluginJsPath":null,"pluginModelPath":"live2d-widget-model-hibiki/assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2d-widget-model-hibiki/live2d-widget-model-hibiki/assets/hibiki.model.json"},"display":{"position":"left","width":200,"height":400},"mobile":{"show":true},"react":{"opacity":0.7}});</script></code>标签前面。但还有一种更好的做法是加<code>defer </code>和 <code>async</code>属性。这两个属性使得<code>script</code>都不会阻塞<code>DOM</code>的渲染<br><a id="more"></a></p>
-<h3 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h3><p>如果script标签设置了该属性，则浏览器会异步的下载该文件并且不会影响到后续DOM的渲染；<br>如果有多个设置了defer的script标签存在，则会按照顺序执行所有的script；<br>defer脚本会在文档渲染完毕后，DOMContentLoaded事件调用前执行。</p>
-<p>应用场景: 如果你的脚本代码依赖于页面中的DOM元素（文档是否解析完毕），或者被其他脚本文件依赖。<br>例：<br>1.评论框<br>2.代码语法高亮<br>3.polyfill.js</p>
-<h3 id="async"><a href="#async" class="headerlink" title="async"></a>async</h3><p>async脚本会在加载完毕后执行。<br>sync的执行，并不会按着script在页面中的顺序来执行，而是谁先加载完谁执行。<br>async脚本的加载不计入DOMContentLoaded事件统计</p>
-<p>应用场景: 如果你的脚本并不关心页面中的DOM元素（文档是否解析完毕），并且也不会产生其他脚本需要的数据。</p>
-<p>例：<br>1.百度统计</p>
-]]></content>
-  </entry>
-  <entry>
     <title>LeetCode算法题之两数之和</title>
     <url>/2019/01/09/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E4%B9%8B%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/</url>
     <content><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。</p>
@@ -132,6 +121,31 @@
         <tag>算法</tag>
         <tag>两数之和</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>defer async</title>
+    <url>/2022/02/19/defer-async/</url>
+    <content><![CDATA[<p>我们都知道，普通的<code>script</code>标签加载 <code>js</code>会阻塞页面解析，因此优化措施可以将script放到<code><script src="/live2d-widget-model-hibiki/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2d-widget-model-hibiki/","pluginJsPath":null,"pluginModelPath":"live2d-widget-model-hibiki/assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2d-widget-model-hibiki/live2d-widget-model-hibiki/assets/hibiki.model.json"},"display":{"position":"left","width":200,"height":400},"mobile":{"show":true},"react":{"opacity":0.7}});</script></code>标签前面。但还有一种更好的做法是加<code>defer </code>和 <code>async</code>属性。这两个属性使得<code>script</code>都不会阻塞<code>DOM</code>的渲染<br><a id="more"></a></p>
+<h3 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h3><p>如果script标签设置了该属性，则浏览器会异步的下载该文件并且不会影响到后续DOM的渲染；<br>如果有多个设置了defer的script标签存在，则会按照顺序执行所有的script；<br>defer脚本会在文档渲染完毕后，DOMContentLoaded事件调用前执行。</p>
+<p>应用场景: 如果你的脚本代码依赖于页面中的DOM元素（文档是否解析完毕），或者被其他脚本文件依赖。<br>例：<br>1.评论框<br>2.代码语法高亮<br>3.polyfill.js</p>
+<h3 id="async"><a href="#async" class="headerlink" title="async"></a>async</h3><p>async脚本会在加载完毕后执行。<br>sync的执行，并不会按着script在页面中的顺序来执行，而是谁先加载完谁执行。<br>async脚本的加载不计入DOMContentLoaded事件统计</p>
+<p>应用场景: 如果你的脚本并不关心页面中的DOM元素（文档是否解析完毕），并且也不会产生其他脚本需要的数据。</p>
+<p>例：<br>1.百度统计</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>es6数组方法</title>
+    <url>/2022/02/17/es6%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>es5数组方法用的比较多，比较熟了，es6比较少，这里总结一下。<br><a id="more"></a></p>
+<h3 id="Array-from"><a href="#Array-from" class="headerlink" title="Array.from()"></a>Array.from()</h3><p>用于将类数组和可遍历的对象转换为真正的数组<br>类数组：就是类似数组的对象，本质上要有length属性，说到底，任何拥有length属性的对象，都可以通过Array.from()方法转换为数组。<br>可遍历的对象：ES6新增的数据结构set和map</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let myArray = &#123;&apos;0&apos;:&apos;a&apos;,&apos;1&apos;:&apos;b&apos;,&apos;2&apos;:&apos;c&apos;&#125;;</span><br><span class="line">let arr = Array.from(myArray);</span><br><span class="line">console.log(arr);   //[]由于没有length属性打印结果为一个空数组</span><br><span class="line"></span><br><span class="line">let myArray = &#123;&apos;0&apos;:&apos;a&apos;,&apos;1&apos;:&apos;b&apos;,&apos;2&apos;:&apos;c&apos;,length:3&#125;;</span><br><span class="line">let arr = Array.from(myArray);</span><br><span class="line">console.log(arr);  //[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]</span><br><span class="line"></span><br><span class="line">console.log(Array.from(&#123;length:2&#125;));  //[undefined, undefined]</span><br></pre></td></tr></table></figure>
+<h3 id="fill"><a href="#fill" class="headerlink" title="fill()"></a>fill()</h3><p>填充一个数组，一般用于数组的初始化</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var arr = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;];</span><br><span class="line">console.log(arr.fill(1)); // [1, 1, 1]</span><br></pre></td></tr></table></figure>
+<h3 id="keys"><a href="#keys" class="headerlink" title="keys()"></a>keys()</h3><p>keys()遍历出所有的索引值</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (let index of [&apos;a&apos;, &apos;b&apos;].keys()) &#123;</span><br><span class="line">    console.log(index);</span><br><span class="line">&#125;  //0  1</span><br></pre></td></tr></table></figure>
+<h3 id="valueOf-NaN"><a href="#valueOf-NaN" class="headerlink" title="valueOf()"></a>valueOf()</h3><p>valueOf()遍历所有的值<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (let index of [&apos;a&apos;, &apos;b&apos;].valueOf()) &#123;</span><br><span class="line">    console.log(index);</span><br><span class="line">&#125;  //a  b</span><br></pre></td></tr></table></figure></p>
+<h3 id="entries"><a href="#entries" class="headerlink" title="entries()"></a>entries()</h3><p>entries()遍历值和索引<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (let index of [&apos;a&apos;, &apos;b&apos;].entries()) &#123;</span><br><span class="line">    console.log(index);</span><br><span class="line">&#125;  //[0, &quot;a&quot;] [1, &quot;b&quot;]</span><br></pre></td></tr></table></figure></p>
+]]></content>
   </entry>
   <entry>
     <title>github actions 前端部署服务器</title>
@@ -153,6 +167,22 @@
 ]]></content>
       <tags>
         <tag>JS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jsonp原理与实现</title>
+    <url>/2022/02/23/jsonp%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/</url>
+    <content><![CDATA[<p>jsonp是一种跨域通信的手段，它的原理其实很简单：</p>
+<p>首先是利用script标签的src属性来实现跨域。</p>
+<p>通过将前端方法作为参数传递到服务器端，然后由服务器端注入参数之后再返回，实现服务器端向客户端通信。</p>
+<p>由于使用script标签的src属性，因此只支持get方法</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function jsonp(req)&#123;</span><br><span class="line">    var script = document.createElement(&apos;script&apos;);</span><br><span class="line">    var url = req.url + &apos;?callback=&apos; + req.callback.name;</span><br><span class="line">    script.src = url;</span><br><span class="line">    document.getElementsByTagName(&apos;head&apos;)[0].appendChild(script); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function hello(res)&#123;</span><br><span class="line">    alert(&apos;hello &apos; + res.data);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">jsonp(&#123;</span><br><span class="line">    url : &apos;&apos;,</span><br><span class="line">    callback : hello </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>服务器端代码:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var http = require(&apos;http&apos;);</span><br><span class="line">var urllib = require(&apos;url&apos;);</span><br><span class="line"></span><br><span class="line">var port = 8080;</span><br><span class="line">var data = &#123;&apos;data&apos;:&apos;world&apos;&#125;;</span><br><span class="line"></span><br><span class="line">http.createServer(function(req,res)&#123;</span><br><span class="line">    var params = urllib.parse(req.url,true);</span><br><span class="line">    if(params.query.callback)&#123;</span><br><span class="line">        console.log(params.query.callback);</span><br><span class="line">        //jsonp</span><br><span class="line">        var str = params.query.callback + &apos;(&apos; + JSON.stringify(data) + &apos;)&apos;;</span><br><span class="line">        res.end(str);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        res.end();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;).listen(port,function()&#123;</span><br><span class="line">    console.log(&apos;jsonp server is on&apos;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>JSONP</tag>
       </tags>
   </entry>
   <entry>
@@ -231,10 +261,27 @@
 <p> （3）不要使用 table 布局，可能很小的一个小改动会造成整个 table 的重新布局</p>
 <p> （4）把 DOM 离线后修改。如：使用 documentFragment 对象在内存里操作 DOM</p>
 <p> （5）不要一条一条地修改 DOM 的样式。与其这样，还不如预先定义好 css 的 class，然后修改 DOM 的 className。</p>
+<h3 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h3><p>box-sizing属性可以指定盒子模型种类，content-box指定盒子模型为W3C（标准盒模型），border-box为IE盒子模型（怪异盒模型）。</p>
+<p>box-sizing: content-box;//宽度和高度分别应用到元素的内容框。在宽度和高度之外绘制元素的内边距和边框。</p>
+<p>box-sizing: border-box;// 为元素设定的宽度和高度决定了元素的边框盒。就是说，为元素指定的任何内边距和边框都将在已设定的宽度和高度内进行绘制。通过从已设定的宽度和高度分别减去边框和内边距才能得到内容的宽度和高度。</p>
 ]]></content>
       <tags>
         <tag>面试</tag>
         <tag>JS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>promise面试题</title>
+    <url>/2022/02/24/promise%E9%9D%A2%E8%AF%95%E9%A2%98/</url>
+    <content><![CDATA[<p>promise 考察的比较多，这里记录一下，加深理解。</p>
+<a id="more"></a>
+<ol>
+<li>ajax 的promise封装</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function getJSON(url) &#123;</span><br><span class="line">  // 创建一个 promise 对象</span><br><span class="line">  let promise = new Promise(function(resolve, reject) &#123;</span><br><span class="line">    let xhr = new XMLHttpRequest();</span><br><span class="line"></span><br><span class="line">    // 新建一个 http 请求</span><br><span class="line">    xhr.open(&quot;GET&quot;, url, true);</span><br><span class="line"></span><br><span class="line">    // 设置状态的监听函数</span><br><span class="line">    xhr.onreadystatechange = function() &#123;</span><br><span class="line">      if (this.readyState !== 4) return;</span><br><span class="line"></span><br><span class="line">      // 当请求成功或失败时，改变 promise 的状态</span><br><span class="line">      if (this.status === 200) &#123;</span><br><span class="line">        resolve(this.response);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        reject(new Error(this.statusText));</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    // 设置错误监听函数</span><br><span class="line">    xhr.onerror = function() &#123;</span><br><span class="line">      reject(new Error(this.statusText));</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    // 设置响应的数据类型</span><br><span class="line">    xhr.responseType = &quot;json&quot;;</span><br><span class="line"></span><br><span class="line">    // 设置请求头信息</span><br><span class="line">    xhr.setRequestHeader(&quot;Accept&quot;, &quot;application/json&quot;);</span><br><span class="line"></span><br><span class="line">    // 发送 http 请求</span><br><span class="line">    xhr.send(null);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  return promise;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>promise</tag>
       </tags>
   </entry>
   <entry>
@@ -378,20 +425,6 @@
       <tags>
         <tag>JS</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>es6数组方法</title>
-    <url>/2022/02/17/es6%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>es5数组方法用的比较多，比较熟了，es6比较少，这里总结一下。<br><a id="more"></a></p>
-<h3 id="Array-from"><a href="#Array-from" class="headerlink" title="Array.from()"></a>Array.from()</h3><p>用于将类数组和可遍历的对象转换为真正的数组<br>类数组：就是类似数组的对象，本质上要有length属性，说到底，任何拥有length属性的对象，都可以通过Array.from()方法转换为数组。<br>可遍历的对象：ES6新增的数据结构set和map</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let myArray = &#123;&apos;0&apos;:&apos;a&apos;,&apos;1&apos;:&apos;b&apos;,&apos;2&apos;:&apos;c&apos;&#125;;</span><br><span class="line">let arr = Array.from(myArray);</span><br><span class="line">console.log(arr);   //[]由于没有length属性打印结果为一个空数组</span><br><span class="line"></span><br><span class="line">let myArray = &#123;&apos;0&apos;:&apos;a&apos;,&apos;1&apos;:&apos;b&apos;,&apos;2&apos;:&apos;c&apos;,length:3&#125;;</span><br><span class="line">let arr = Array.from(myArray);</span><br><span class="line">console.log(arr);  //[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]</span><br><span class="line"></span><br><span class="line">console.log(Array.from(&#123;length:2&#125;));  //[undefined, undefined]</span><br></pre></td></tr></table></figure>
-<h3 id="fill"><a href="#fill" class="headerlink" title="fill()"></a>fill()</h3><p>填充一个数组，一般用于数组的初始化</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var arr = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;];</span><br><span class="line">console.log(arr.fill(1)); // [1, 1, 1]</span><br></pre></td></tr></table></figure>
-<h3 id="keys"><a href="#keys" class="headerlink" title="keys()"></a>keys()</h3><p>keys()遍历出所有的索引值</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (let index of [&apos;a&apos;, &apos;b&apos;].keys()) &#123;</span><br><span class="line">    console.log(index);</span><br><span class="line">&#125;  //0  1</span><br></pre></td></tr></table></figure>
-<h3 id="valueOf-NaN"><a href="#valueOf-NaN" class="headerlink" title="valueOf()"></a>valueOf()</h3><p>valueOf()遍历所有的值<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (let index of [&apos;a&apos;, &apos;b&apos;].valueOf()) &#123;</span><br><span class="line">    console.log(index);</span><br><span class="line">&#125;  //a  b</span><br></pre></td></tr></table></figure></p>
-<h3 id="entries"><a href="#entries" class="headerlink" title="entries()"></a>entries()</h3><p>entries()遍历值和索引<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (let index of [&apos;a&apos;, &apos;b&apos;].entries()) &#123;</span><br><span class="line">    console.log(index);</span><br><span class="line">&#125;  //[0, &quot;a&quot;] [1, &quot;b&quot;]</span><br></pre></td></tr></table></figure></p>
-]]></content>
   </entry>
   <entry>
     <title>加油!</title>
