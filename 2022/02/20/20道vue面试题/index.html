@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Tao&#39;s部落格">
 <meta property="og:description" content="常见的vue面试题，整理如下：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2022-02-23T16:10:17.596Z">
+<meta property="og:updated_time" content="2022-02-28T12:31:20.109Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="20道vue面试题">
 <meta name="twitter:description" content="常见的vue面试题，整理如下：">
@@ -374,8 +374,13 @@
 <p>1、Object.defineProperty 数据劫持<br>2、使用 getter 收集依赖 ，setter 通知 watcher派发更新。<br>3、watcher 发布订阅模式。</p>
 <h3 id="data-为什么是函数"><a href="#data-为什么是函数" class="headerlink" title="data 为什么是函数"></a>data 为什么是函数</h3><p>组件的data写成一个函数，数据以函数返回值形式定义，这样每复用一次组件，就会返回一分新的data，类似于给每个组件实例创建一个私有的数据空间，让各个组件实例维护各自的数据。而单纯的写成对象形式，就使得所有组件实例共用了一份data，就会造成一个变了全都会变的结果</p>
 <h3 id="v-model-的原理"><a href="#v-model-的原理" class="headerlink" title="v-model 的原理"></a>v-model 的原理</h3><p>v-model 只是语法糖而已。<br>v-model 在内部为不同的输入元素使用不同的 property 并抛出不同的事件。<br>text 和 textarea 元素使用 value property 和 input 事件；<br>checkbox 和 radio 使用 checked property 和 change事件；<br>select 字段将 value 作为 prop 并将 change 作为事件。<br>注意：对于需要使用输入法的语言，你会发现 v-model 不会在输入法组合文字过程中得到更新。<br>在普通元素上：<br>input v-model=’sth’<br>input v-bind:value=’sth’ v-on:input=’sth = $event.target.value’</p>
-<h3 id="v-if-和-v-show-的区别"><a href="#v-if-和-v-show-的区别" class="headerlink" title="v-if 和 v-show 的区别"></a>v-if 和 v-show 的区别</h3><p>v-if 在编译过程中会被转化成三元表达式，条件不满足时不渲染此节点。</p>
-<p>v-show 会被编译成指令，条件不满足时控制样式将此节点隐藏（display:none）</p>
+<h3 id="v-if-和-v-show-的区别"><a href="#v-if-和-v-show-的区别" class="headerlink" title="v-if 和 v-show 的区别"></a>v-if 和 v-show 的区别</h3><p>控制手段不同<br>编译过程不同<br>编译条件不同</p>
+<p>控制手段：v-show隐藏则是为该元素添加css–display:none，dom元素依旧还在。v-if显示隐藏是将dom元素整个添加或删除</p>
+<p>编译过程：v-if切换有一个局部编译/卸载的过程，切换过程中合适地销毁和重建内部的事件监听和子组件；v-show只是简单的基于css切换</p>
+<p>编译条件：v-if是真正的条件渲染，它会确保在切换过程中条件块内的事件监听器和子组件适当地被销毁和重建。只有渲染条件为假时，并不做操作，直到为真才渲染</p>
+<p>v-show 由false变为true的时候不会触发组件的生命周期</p>
+<p>v-if由false变为true的时候，触发组件的beforeCreate、create、beforeMount、mounted钩子，由true变为false的时候触发组件的beforeDestory、destoryed方法</p>
+<p>性能消耗：v-if有更高的切换消耗；v-show有更高的初始渲染消耗；</p>
 <h3 id="computed、-watch-区别"><a href="#computed、-watch-区别" class="headerlink" title="computed、 watch 区别"></a>computed、 watch 区别</h3><p>computed<br>1、computed是计算属性，也就是依赖某个值或者props通过计算得来得数据；<br>2、 computed的值是在getter执行之后进行缓存的，只有在它依赖的数据发生变化，会重新调用getter来计算；<br>3、 不支持异步，当computed内有异步操作时无效，无法监听数据的变化；</p>
 <p>watch<br>1、watch是监听器，可以监听某一个数据，然后执行相应的操作；<br>2、不支持缓存，数据变直接会触发相应的操作；<br>3、监听的函数接收两个参数，第一个参数是最新的值；第二个参数是输入之前的值；<br>4、支持异步操作；</p>
 <h3 id="Vue-的生命周期"><a href="#Vue-的生命周期" class="headerlink" title="Vue 的生命周期"></a>Vue 的生命周期</h3><p>beforeCreate 在实例初始化之后，数据观测（data observe）和 event/watcher 事件配置之前被调用。在当前阶段 data、methods、computed 以及 watch 上的数据和方法都不能被访问。</p>
@@ -535,7 +540,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -548,7 +553,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
