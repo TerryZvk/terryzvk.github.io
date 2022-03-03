@@ -325,6 +325,25 @@
       </tags>
   </entry>
   <entry>
+    <title>var,let,const</title>
+    <url>/2022/03/03/var-let-const/</url>
+    <content><![CDATA[<p>var、let、const 区别：<br><a id="more"></a></p>
+<h3 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h3><p><code>var</code>存在变量提升, 即变量可以在声明之前调用，值为undefined</p>
+<p>let和const不存在变量提升，即它们所声明的变量一定要在声明后使用，否则报错</p>
+<h3 id="暂时性死区"><a href="#暂时性死区" class="headerlink" title="暂时性死区"></a>暂时性死区</h3><p>var不存在暂时性死区</p>
+<p>let和const存在暂时性死区，只有等到声明变量的那一行代码出现，才可以获取和使用该变量</p>
+<h3 id="块级作用域"><a href="#块级作用域" class="headerlink" title="块级作用域"></a>块级作用域</h3><p>var不存在块级作用域</p>
+<p>let和const存在块级作用域</p>
+<h3 id="重复声明"><a href="#重复声明" class="headerlink" title="重复声明"></a>重复声明</h3><p>var允许重复声明变量</p>
+<p>let和const在同一作用域不允许重复声明变量</p>
+<h3 id="修改声明的变量"><a href="#修改声明的变量" class="headerlink" title="修改声明的变量"></a>修改声明的变量</h3><p>var和let可以</p>
+<p>const声明一个只读的常量。一旦声明，常量的值就不能改变</p>
+]]></content>
+      <tags>
+        <tag>JS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vps一键搭建ss脚本</title>
     <url>/2019/07/27/vps%E4%B8%80%E9%94%AE%E6%90%AD%E5%BB%BAss%E8%84%9A%E6%9C%AC/</url>
     <content><![CDATA[<h3 id="安装脚本"><a href="#安装脚本" class="headerlink" title="安装脚本"></a>安装脚本</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget --no-check-certificate http://down.whsir.com/downloads/shadowsocks-go.sh</span><br><span class="line">chmod +x shadowsocks-go.sh</span><br><span class="line">./shadowsocks-go.sh 2&gt;&amp;1 | tee shadowsocks-go.log</span><br></pre></td></tr></table></figure>
@@ -441,6 +460,23 @@
       <tags>
         <tag>webpack</tag>
         <tag>打包</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>你不知道的JS之作用域闭包</title>
+    <url>/2022/03/02/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JS%E4%B9%8B%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%97%AD%E5%8C%85/</url>
+    <content><![CDATA[<p>什么是闭包？从表现形式上来说，返回函数的函数就是一个闭包。如下面的代码所示：<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function foo() &#123; var a = 2;</span><br><span class="line">  function bar() &#123; </span><br><span class="line">    console.log( a );</span><br><span class="line">  &#125;</span><br><span class="line">  return bar; </span><br><span class="line">&#125;</span><br><span class="line">var baz = foo();</span><br><span class="line"></span><br><span class="line">baz(); // 2</span><br></pre></td></tr></table></figure></p>
+<p>函数 bar() 的词法作用域能够访问 foo() 的内部作用域。然后我们将 bar() 函数本身当作 一个值类型进行传递。在这个例子中，我们将 bar 所引用的函数对象本身当作返回值。</p>
+<p>在 foo() 执行后，其返回值(也就是内部的 bar() 函数)赋值给变量 baz 并调用 baz()，实 际上只是通过不同的标识符引用调用了内部的函数 bar()。</p>
+<p>bar() 显然可以被正常执行。但是在这个例子中，它在自己定义的词法作用域以外的地方 执行。</p>
+<p>在 foo() 执行后，通常会期待 foo() 的整个内部作用域都被销毁，因为我们知道引擎有垃 圾回收器用来释放不再使用的内存空间。由于看上去 foo() 的内容不会再被使用，所以很 自然地会考虑对其进行回收。</p>
+<p>而闭包的“神奇”之处正是可以阻止这件事情的发生。事实上内部作用域依然存在，因此 没有被回收。谁在使用这个内部作用域?原来是 bar() 本身在使用。</p>
+<p>拜 bar() 所声明的位置所赐，它拥有涵盖 foo() 内部作用域的闭包，使得该作用域能够一 直存活，以供 bar() 在之后任何时间进行引用。<br>bar() 依然持有对该作用域的引用，而这个引用就叫作闭包。</p>
+<p>因此，在几微秒之后变量 baz 被实际调用(调用内部函数 bar)，不出意料它可以访问定义时的词法作用域，因此它也可以如预期般访问变量 a。 这个函数在定义时的词法作用域以外的地方被调用。闭包使得函数可以继续访问定义时的词法作用域。</p>
+]]></content>
+      <tags>
+        <tag>JS</tag>
+        <tag>闭包</tag>
       </tags>
   </entry>
   <entry>
