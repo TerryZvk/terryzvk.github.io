@@ -523,6 +523,17 @@
       </tags>
   </entry>
   <entry>
+    <title>手写instanceof</title>
+    <url>/2022/03/15/%E6%89%8B%E5%86%99instanceof/</url>
+    <content><![CDATA[<p>其实 instanceof 主要的实现原理就是只要右边变量的 prototype 在左边变量的原型链上即可。因此，instanceof 在查找的过程中会遍历左边变量的原型链，直到找到右边变量的 prototype，如果查找失败，则会返回 false，告诉我们左边变量并非是右边变量的实例。</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function new_instance_of(leftVaule, rightVaule) &#123; </span><br><span class="line">    let rightProto = rightVaule.prototype; // 取右表达式的 prototype 值</span><br><span class="line">    leftVaule = leftVaule.__proto__; // 取左表达式的__proto__值</span><br><span class="line">    while (true) &#123;</span><br><span class="line">        if (leftVaule === null) &#123;</span><br><span class="line">            return false;    </span><br><span class="line">        &#125;</span><br><span class="line">        if (leftVaule === rightProto) &#123;</span><br><span class="line">            return true;    </span><br><span class="line">        &#125; </span><br><span class="line">        leftVaule = leftVaule.__proto__ </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>JS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>数组与树互转</title>
     <url>/2022/03/08/%E6%95%B0%E7%BB%84%E4%B8%8E%E6%A0%91%E4%BA%92%E8%BD%AC/</url>
     <content><![CDATA[<p>数组与树结构互相转变，平时也用的比较多，主要是用递归实现</p>
