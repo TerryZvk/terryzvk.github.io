@@ -1,0 +1,659 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="terry zhang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="ReduceJS 数组中的数组方法reduce经常用到，该方法对数组中的每个元素执行callback函数(升序执行)，将其结果汇总为单个返回值。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS数组之reduce">
+<meta property="og:url" content="http://example.com/2020/05/13/JS%E6%95%B0%E7%BB%84%E4%B9%8Breduce/index.html">
+<meta property="og:site_name" content="Tao&#39;s部落格">
+<meta property="og:description" content="ReduceJS 数组中的数组方法reduce经常用到，该方法对数组中的每个元素执行callback函数(升序执行)，将其结果汇总为单个返回值。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-12T16:21:42.000Z">
+<meta property="article:modified_time" content="2025-03-20T03:56:32.437Z">
+<meta property="article:author" content="terry zhang">
+<meta property="article:tag" content="JS">
+<meta property="article:tag" content="reduce">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>JS数组之reduce - Tao&#39;s部落格</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Tao&#39;s部落格</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="JS数组之reduce"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-05-13 00:21" pubdate>
+          2020年5月13日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">JS数组之reduce</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h4 id="Reduce"><a href="#Reduce" class="headerlink" title="Reduce"></a>Reduce</h4><p>JS 数组中的数组方法reduce经常用到，该方法对数组中的每个元素执行callback函数(升序执行)，将其结果汇总为单个返回值。</p>
+<span id="more"></span>
+<h5 id="语法："><a href="#语法：" class="headerlink" title="语法："></a>语法：</h5><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs arcade">arr.<span class="hljs-built_in">reduce</span>(callback(accumulator, currentValue, index, <span class="hljs-built_in">array</span>), initialValue)<br><br></code></pre></td></tr></table></figure>
+<h5 id="参数"><a href="#参数" class="headerlink" title="参数:"></a>参数:</h5><p><code>callback</code><br>执行数组中每个值 (如果没有提供 initialValue则第一个值除外)的函数，包含四个参数：<br>accumulator<br>累计器累计回调的返回值; 它是上一次调用回调时返回的累积值，或initialValue（见于下方）。</p>
+<p><code>currentValue</code><br>数组中正在处理的元素。<br><code>index </code>可选<br>数组中正在处理的当前元素的索引。 如果提供了initialValue，则起始索引号为0，否则从索引1起始。<br><code>array</code>可选<br>调用reduce()的数组<br><code>initialValue</code>可选<br>作为第一次调用 callback函数时的第一个参数的值。 如果没有提供初始值，则将使用数组中的第一个元素。 在没有初始值的空数组上调用 reduce 将报错。</p>
+<p>回调函数第一次执行时，<code>accumulator</code> 和<code>currentValue</code>的取值有两种情况：如果调用reduce()时提供了<code>initialValue</code>，<code>accumulator</code>取值为<code>initialValue</code>，<code>currentValue</code>取数组中的第一个值；如果没有提供 <code>initialValue</code>，那么<code>accumulator</code>取数组中的第一个值，<code>currentValue</code>取数组中的第二个值。</p>
+<strong>
+注意：如果没有提供initialValue，reduce 会从索引1的地方开始执行 callback 方法，跳过第一个索引。如果提供initialValue，从索引0开始。
+</strong>
+
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><h5 id="数组求和"><a href="#数组求和" class="headerlink" title="数组求和"></a>数组求和</h5><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs arcade">const  total = [ <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ].<span class="hljs-built_in">reduce</span>(<br>  <span class="hljs-function">(<span class="hljs-params"> acc, cur </span>) =&gt;</span> acc + cur,<br>  <span class="hljs-number">0</span><br>)<br></code></pre></td></tr></table></figure>
+<h5 id="将二维数组转化为一维"><a href="#将二维数组转化为一维" class="headerlink" title="将二维数组转化为一维"></a>将二维数组转化为一维</h5><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs lua">var flattened = <span class="hljs-string">[[0, 1], [2, 3], [4, 5]]</span>.reduce(<br> ( acc, cur ) =&gt; acc.<span class="hljs-built_in">concat</span>(cur),<br> []<br>);<br><br></code></pre></td></tr></table></figure>
+
+<h5 id="计算数组中每个元素出现的次数"><a href="#计算数组中每个元素出现的次数" class="headerlink" title="计算数组中每个元素出现的次数"></a>计算数组中每个元素出现的次数</h5><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs xquery">var names = [<span class="hljs-string">&#x27;Alice&#x27;</span>, <span class="hljs-string">&#x27;Bob&#x27;</span>, <span class="hljs-string">&#x27;Tiff&#x27;</span>, <span class="hljs-string">&#x27;Bruce&#x27;</span>, <span class="hljs-string">&#x27;Alice&#x27;</span>];<br><br>var countedNames = names.reduce(<span class="hljs-keyword">function</span> (allNames,<span class="hljs-built_in"> name</span>) &#123; <br>  <span class="hljs-keyword">if</span> <span class="hljs-built_in">(name</span> <span class="hljs-keyword">in</span> allNames) &#123;<br>    allNames<span class="hljs-built_in">[name</span>]++;<br>  &#125;<br>  <span class="hljs-keyword">else</span> &#123;<br>    allNames<span class="hljs-built_in">[name</span>] = <span class="hljs-number">1</span>;<br>  &#125;<br>  <span class="hljs-keyword">return</span> allNames;<br>&#125;, &#123;&#125;);<br>// countedNames is:<br>// &#123; <span class="hljs-string">&#x27;Alice&#x27;</span>: <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;Bob&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;Tiff&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;Bruce&#x27;</span>: <span class="hljs-number">1</span> &#125;<br></code></pre></td></tr></table></figure>
+<h5 id="按属性对object分类"><a href="#按属性对object分类" class="headerlink" title="按属性对object分类"></a>按属性对object分类</h5><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-keyword">var</span> people = [<br>  &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Alice&#x27;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">21</span> &#125;,<br>  &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Max&#x27;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">20</span> &#125;,<br>  &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Jane&#x27;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">20</span> &#125;<br>];<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">groupBy</span>(<span class="hljs-params">objectArray, property</span>) &#123;<br>  <span class="hljs-keyword">return</span> objectArray.<span class="hljs-built_in">reduce</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">acc, obj</span>) &#123;<br>    <span class="hljs-keyword">var</span> key = obj[property];<br>    <span class="hljs-keyword">if</span> (!acc[key]) &#123;<br>      acc[key] = [];<br>    &#125;<br>    acc[key].<span class="hljs-built_in">push</span>(obj);<br>    <span class="hljs-keyword">return</span> acc;<br>  &#125;, &#123;&#125;);<br>&#125;<br><br><span class="hljs-keyword">var</span> groupedPeople = <span class="hljs-built_in">groupBy</span>(people, <span class="hljs-string">&#x27;age&#x27;</span>);<br><span class="hljs-comment">// groupedPeople is:</span><br><span class="hljs-comment">// &#123; </span><br><span class="hljs-comment">//   20: [</span><br><span class="hljs-comment">//     &#123; name: &#x27;Max&#x27;, age: 20 &#125;, </span><br><span class="hljs-comment">//     &#123; name: &#x27;Jane&#x27;, age: 20 &#125;</span><br><span class="hljs-comment">//   ], </span><br><span class="hljs-comment">//   21: [&#123; name: &#x27;Alice&#x27;, age: 21 &#125;] </span><br><span class="hljs-comment">// &#125;</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="使用扩展运算符和initialValue绑定包含在对象数组中的数组"><a href="#使用扩展运算符和initialValue绑定包含在对象数组中的数组" class="headerlink" title="使用扩展运算符和initialValue绑定包含在对象数组中的数组"></a>使用扩展运算符和initialValue绑定包含在对象数组中的数组</h5><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">// friends - 对象数组<br>// <span class="hljs-keyword">where</span> <span class="hljs-keyword">object</span> field &quot;books&quot; - list <span class="hljs-keyword">of</span> favorite books <br>var friends = [&#123;<br>  <span class="hljs-type">name</span>: <span class="hljs-string">&#x27;Anna&#x27;</span>,<br>  books: [<span class="hljs-string">&#x27;Bible&#x27;</span>, <span class="hljs-string">&#x27;Harry Potter&#x27;</span>],<br>  age: <span class="hljs-number">21</span><br>&#125;, &#123;<br>  <span class="hljs-type">name</span>: <span class="hljs-string">&#x27;Bob&#x27;</span>,<br>  books: [<span class="hljs-string">&#x27;War and peace&#x27;</span>, <span class="hljs-string">&#x27;Romeo and Juliet&#x27;</span>],<br>  age: <span class="hljs-number">26</span><br>&#125;, &#123;<br>  <span class="hljs-type">name</span>: <span class="hljs-string">&#x27;Alice&#x27;</span>,<br>  books: [<span class="hljs-string">&#x27;The Lord of the Rings&#x27;</span>, <span class="hljs-string">&#x27;The Shining&#x27;</span>],<br>  age: <span class="hljs-number">18</span><br>&#125;];<br><br>// allbooks - list which will contain <span class="hljs-keyword">all</span> friends<span class="hljs-string">&#x27; books +  </span><br><span class="hljs-string">// additional list contained in initialValue</span><br><span class="hljs-string">var allbooks = friends.reduce(function(prev, curr) &#123;</span><br><span class="hljs-string">  return [...prev, ...curr.books];</span><br><span class="hljs-string">&#125;, [&#x27;</span>Alphabet<span class="hljs-string">&#x27;]);</span><br><span class="hljs-string"></span><br><span class="hljs-string">// allbooks = [</span><br><span class="hljs-string">//   &#x27;</span>Alphabet<span class="hljs-string">&#x27;, &#x27;</span>Bibl<span class="hljs-string">e&#x27;, &#x27;</span>Harry Potter<span class="hljs-string">&#x27;, &#x27;</span>War <span class="hljs-keyword">and</span> peac<span class="hljs-string">e&#x27;, </span><br><span class="hljs-string">//   &#x27;</span>Romeo <span class="hljs-keyword">and</span> Juliet<span class="hljs-string">&#x27;, &#x27;</span>The Lord <span class="hljs-keyword">of</span> the Rings<span class="hljs-string">&#x27;,</span><br><span class="hljs-string">//   &#x27;</span>The Shining<span class="hljs-string">&#x27;</span><br><span class="hljs-string">// ]</span><br></code></pre></td></tr></table></figure>
+<h5 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h5><strong>
+注意： 如果你正在使用一个可以兼容<code>Set </code>和<code> Array.from() </code>的环境， 你可以使用<code>let orderedArray = Array.from(new Set(myArray)); <code>来获得一个相同元素被移除的数组。
+</strong>
+方法一：
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-keyword">var</span> myArray = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-string">&#x27;d&#x27;</span>, <span class="hljs-string">&#x27;d&#x27;</span>, <span class="hljs-string">&#x27;d&#x27;</span>, <span class="hljs-string">&#x27;d&#x27;</span>];<br><span class="hljs-keyword">var</span> myOrderedArray = myArray.<span class="hljs-built_in">reduce</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">accumulator, currentValue</span>) &#123;<br>  <span class="hljs-keyword">if</span> (accumulator.<span class="hljs-built_in">indexOf</span>(currentValue) === <span class="hljs-number">-1</span>) &#123;<br>    accumulator.<span class="hljs-built_in">push</span>(currentValue);<br>  &#125;<br>  <span class="hljs-keyword">return</span> accumulator<br>&#125;, [])<br></code></pre></td></tr></table></figure>
+方法二：
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs arcade">let arr = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">4</span>,<span class="hljs-number">4</span>,<span class="hljs-number">4</span>];<br>let result = arr.<span class="hljs-built_in">sort</span>().<span class="hljs-built_in">reduce</span>(<span class="hljs-function">(<span class="hljs-params">init, current</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">if</span>(init.<span class="hljs-built_in">length</span> === <span class="hljs-number">0</span> || init[init.<span class="hljs-built_in">length</span><span class="hljs-number">-1</span>] !== current) &#123;<br>        init.<span class="hljs-built_in">push</span>(current);<br>    &#125;<br>    <span class="hljs-keyword">return</span> init;<br>&#125;, []);<br><span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(result); <span class="hljs-comment">//[1,2,3,4,5]</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="按顺序运行Promise"><a href="#按顺序运行Promise" class="headerlink" title="按顺序运行Promise"></a>按顺序运行Promise</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Runs promises from array of functions that can return promises</span><br><span class="hljs-comment"> * in chained manner</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> &#123;<span class="hljs-type">array</span>&#125; <span class="hljs-variable">arr</span> - promise arr</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span> &#123;<span class="hljs-type">Object</span>&#125; promise object</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">runPromiseInSequence</span>(<span class="hljs-params">arr, input</span>) &#123;<br>  <span class="hljs-keyword">return</span> arr.<span class="hljs-title function_">reduce</span>(<br>    <span class="hljs-function">(<span class="hljs-params">promiseChain, currentFunction</span>) =&gt;</span> promiseChain.<span class="hljs-title function_">then</span>(currentFunction),<br>    <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(input)<br>  );<br>&#125;<br><br><span class="hljs-comment">// promise function 1</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">p1</span>(<span class="hljs-params">a</span>) &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>    <span class="hljs-title function_">resolve</span>(a * <span class="hljs-number">5</span>);<br>  &#125;);<br>&#125;<br><br><span class="hljs-comment">// promise function 2</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">p2</span>(<span class="hljs-params">a</span>) &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>    <span class="hljs-title function_">resolve</span>(a * <span class="hljs-number">2</span>);<br>  &#125;);<br>&#125;<br><br><span class="hljs-comment">// function 3  - will be wrapped in a resolved promise by .then()</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">f3</span>(<span class="hljs-params">a</span>) &#123;<br> <span class="hljs-keyword">return</span> a * <span class="hljs-number">3</span>;<br>&#125;<br><br><span class="hljs-comment">// promise function 4</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">p4</span>(<span class="hljs-params">a</span>) &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>    <span class="hljs-title function_">resolve</span>(a * <span class="hljs-number">4</span>);<br>  &#125;);<br>&#125;<br><br><span class="hljs-keyword">const</span> promiseArr = [p1, p2, f3, p4];<br><span class="hljs-title function_">runPromiseInSequence</span>(promiseArr, <span class="hljs-number">10</span>)<br>  .<span class="hljs-title function_">then</span>(<span class="hljs-variable language_">console</span>.<span class="hljs-property">log</span>);   <span class="hljs-comment">// 1200</span><br></code></pre></td></tr></table></figure>
+<h5 id="功能型函数管道"><a href="#功能型函数管道" class="headerlink" title="功能型函数管道"></a>功能型函数管道</h5><figure class="highlight zephir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs zephir"><span class="hljs-comment">// Building-blocks to use for composition</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> = x =&gt; x + x;<br><span class="hljs-keyword">const</span> triple = x =&gt; <span class="hljs-number">3</span> * x;<br><span class="hljs-keyword">const</span> quadruple = x =&gt; <span class="hljs-number">4</span> * x;<br><br><span class="hljs-comment">// Function composition enabling pipe functionality</span><br><span class="hljs-keyword">const</span> pipe = (...functions) =&gt; input =&gt; functions.reduce(<br>    (acc, <span class="hljs-function"><span class="hljs-keyword">fn</span>) =&gt; <span class="hljs-title">fn</span><span class="hljs-params">(acc)</span>,</span><br><span class="hljs-function">    <span class="hljs-title">input</span></span><br><span class="hljs-function">)</span>;<br><br><span class="hljs-comment">// Composed functions for multiplication of specific values</span><br><span class="hljs-keyword">const</span> multiply6 = pipe(<span class="hljs-keyword">double</span>, triple);<br><span class="hljs-keyword">const</span> multiply9 = pipe(triple, triple);<br><span class="hljs-keyword">const</span> multiply16 = pipe(quadruple, quadruple);<br><span class="hljs-keyword">const</span> multiply24 = pipe(<span class="hljs-keyword">double</span>, triple, quadruple);<br><br><span class="hljs-comment">// Usage</span><br>multiply6(<span class="hljs-number">6</span>); <span class="hljs-comment">// 36</span><br>multiply9(<span class="hljs-number">9</span>); <span class="hljs-comment">// 81</span><br>multiply16(<span class="hljs-number">16</span>); <span class="hljs-comment">// 256</span><br>multiply24(<span class="hljs-number">10</span>); <span class="hljs-comment">// 240</span><br></code></pre></td></tr></table></figure>
+<h5 id="使用-reduce实现map"><a href="#使用-reduce实现map" class="headerlink" title="使用 reduce实现map"></a>使用 reduce实现map</h5><figure class="highlight sas"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs sas"><span class="hljs-keyword">if</span> (!<span class="hljs-keyword">Array</span>.prototype.mapUsingReduce) &#123;<br>  <span class="hljs-keyword">Array</span>.prototype.mapUsingReduce = functio<span class="hljs-meta">n</span>(callback, thisArg) &#123;<br>    <span class="hljs-keyword">return</span> this.reduce(functio<span class="hljs-meta">n</span>(mappedArray, currentValue, <span class="hljs-keyword">index</span>, <span class="hljs-keyword">array</span>) &#123;<br>      mappedArray[<span class="hljs-keyword">index</span>] = callback.<span class="hljs-keyword">call</span>(thisArg, currentValue, <span class="hljs-keyword">index</span>, <span class="hljs-keyword">array</span>);<br>      <span class="hljs-keyword">return</span> mappedArray;<br>    &#125;, []);<br>  &#125;;<br>&#125;<br><br>[1, 2, , 3].mapUsingReduce(<br>  (currentValue, <span class="hljs-keyword">index</span>, <span class="hljs-keyword">array</span>) =&gt; currentValue + <span class="hljs-keyword">index</span> + <span class="hljs-keyword">array</span>.<span class="hljs-keyword">length</span><br>); // [5, 7, , 10]<br></code></pre></td></tr></table></figure>
+
+<p>总之，reduce 方法功能十分强大，以后在项目中多多使用吧。😁</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/JS/" class="print-no-link">#JS</a>
+      
+        <a href="/tags/reduce/" class="print-no-link">#reduce</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>JS数组之reduce</div>
+      <div>http://example.com/2020/05/13/JS数组之reduce/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>terry zhang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年5月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/09/27/%E6%B5%8B%E8%AF%95%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/" title="测试持续集成">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">测试持续集成</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/05/03/%E6%A0%B9%E6%8D%AE%E5%AD%90%E8%8A%82%E7%82%B9%E5%AF%BB%E6%89%BE%E7%88%B6%E8%8A%82%E7%82%B9%E8%B7%AF%E5%BE%84/" title="根据子节点寻找父节点路径">
+                        <span class="hidden-mobile">根据子节点寻找父节点路径</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
